@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const categories = [
   {
@@ -54,14 +55,8 @@ const categories = [
 ];
 
 const colorConfig: Record<string, {
-  card: string;
-  badge: string;
-  accent: string;
-  iconBg: string;
-  glow: string;
-  divider: string;
-  meta: string;
-  hoverBorder: string;
+  card: string; badge: string; accent: string; iconBg: string;
+  glow: string; divider: string; meta: string; hoverBorder: string;
 }> = {
   cyan: {
     card: "border-cyan-500/20 bg-gradient-to-br from-cyan-950/50 via-slate-900/60 to-slate-900/80",
@@ -71,7 +66,7 @@ const colorConfig: Record<string, {
     glow: "from-cyan-500/8 via-transparent to-transparent",
     divider: "from-transparent via-cyan-500/35 to-transparent",
     meta: "text-cyan-400/65",
-    hoverBorder: "group-hover:border-cyan-500/45",
+    hoverBorder: "group-hover:border-cyan-500/50",
   },
   violet: {
     card: "border-violet-500/20 bg-gradient-to-br from-violet-950/50 via-slate-900/60 to-slate-900/80",
@@ -81,7 +76,7 @@ const colorConfig: Record<string, {
     glow: "from-violet-500/8 via-transparent to-transparent",
     divider: "from-transparent via-violet-500/35 to-transparent",
     meta: "text-violet-400/65",
-    hoverBorder: "group-hover:border-violet-500/45",
+    hoverBorder: "group-hover:border-violet-500/50",
   },
   amber: {
     card: "border-amber-500/20 bg-gradient-to-br from-amber-950/50 via-slate-900/60 to-slate-900/80",
@@ -91,7 +86,7 @@ const colorConfig: Record<string, {
     glow: "from-amber-500/8 via-transparent to-transparent",
     divider: "from-transparent via-amber-500/35 to-transparent",
     meta: "text-amber-400/65",
-    hoverBorder: "group-hover:border-amber-500/45",
+    hoverBorder: "group-hover:border-amber-500/50",
   },
   red: {
     card: "border-red-500/20 bg-gradient-to-br from-red-950/50 via-slate-900/60 to-slate-900/80",
@@ -101,7 +96,7 @@ const colorConfig: Record<string, {
     glow: "from-red-500/8 via-transparent to-transparent",
     divider: "from-transparent via-red-500/35 to-transparent",
     meta: "text-red-400/65",
-    hoverBorder: "group-hover:border-red-500/45",
+    hoverBorder: "group-hover:border-red-500/50",
   },
   emerald: {
     card: "border-emerald-500/20 bg-gradient-to-br from-emerald-950/50 via-slate-900/60 to-slate-900/80",
@@ -111,7 +106,7 @@ const colorConfig: Record<string, {
     glow: "from-emerald-500/8 via-transparent to-transparent",
     divider: "from-transparent via-emerald-500/35 to-transparent",
     meta: "text-emerald-400/65",
-    hoverBorder: "group-hover:border-emerald-500/45",
+    hoverBorder: "group-hover:border-emerald-500/50",
   },
   indigo: {
     card: "border-indigo-500/20 bg-gradient-to-br from-indigo-950/50 via-slate-900/60 to-slate-900/80",
@@ -121,7 +116,7 @@ const colorConfig: Record<string, {
     glow: "from-indigo-500/8 via-transparent to-transparent",
     divider: "from-transparent via-indigo-500/35 to-transparent",
     meta: "text-indigo-400/65",
-    hoverBorder: "group-hover:border-indigo-500/45",
+    hoverBorder: "group-hover:border-indigo-500/50",
   },
   slate: {
     card: "border-slate-500/25 bg-gradient-to-br from-slate-800/60 via-slate-900/60 to-slate-900/80",
@@ -131,7 +126,7 @@ const colorConfig: Record<string, {
     glow: "from-slate-500/8 via-transparent to-transparent",
     divider: "from-transparent via-slate-500/35 to-transparent",
     meta: "text-slate-400/65",
-    hoverBorder: "group-hover:border-slate-500/50",
+    hoverBorder: "group-hover:border-slate-400/50",
   },
   teal: {
     card: "border-teal-500/20 bg-gradient-to-br from-teal-950/50 via-slate-900/60 to-slate-900/80",
@@ -141,13 +136,91 @@ const colorConfig: Record<string, {
     glow: "from-teal-500/8 via-transparent to-transparent",
     divider: "from-transparent via-teal-500/35 to-transparent",
     meta: "text-teal-400/65",
-    hoverBorder: "group-hover:border-teal-500/45",
+    hoverBorder: "group-hover:border-teal-500/50",
   },
 };
 
+const GAP = 20; // px — matches the inline gap
+const DUPED = [...categories, ...categories]; // duplicate for seamless loop reset
+
 export default function Skills() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const pausedRef = useRef(false);
+
+  const [cardW, setCardW] = useState(261);
+  const [offset, setOffset] = useState(0);
+  const [animated, setAnimated] = useState(true);
+
+  // Measure card width from container so it's always responsive
+  const measureCard = useCallback(() => {
+    if (!trackRef.current) return;
+    const containerW = trackRef.current.offsetWidth;
+    const vw = window.innerWidth;
+    const visible = vw >= 1024 ? 4 : vw >= 640 ? 2 : 1;
+    setCardW(Math.floor((containerW - GAP * (visible - 1)) / visible));
+  }, []);
+
+  useEffect(() => {
+    measureCard();
+    window.addEventListener("resize", measureCard);
+    return () => window.removeEventListener("resize", measureCard);
+  }, [measureCard]);
+
+  const advance = useCallback(() => {
+    if (pausedRef.current) return;
+    setOffset((prev) => prev + 1);
+  }, []);
+
+  // Start the auto-advance timer
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(advance, 2500);
+  }, [advance]);
+
+  useEffect(() => {
+    startTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [startTimer]);
+
+  // When offset reaches end of original cards, wait for transition then snap back
+  useEffect(() => {
+    if (offset >= categories.length) {
+      const timeout = setTimeout(() => {
+        setAnimated(false);
+        setOffset(0);
+      }, 750);
+      return () => clearTimeout(timeout);
+    }
+  }, [offset]);
+
+  // Re-enable transition after the instant snap (two rAF frames to ensure DOM flush)
+  useEffect(() => {
+    if (!animated) {
+      const id = requestAnimationFrame(() =>
+        requestAnimationFrame(() => setAnimated(true))
+      );
+      return () => cancelAnimationFrame(id);
+    }
+  }, [animated]);
+
+  const step = cardW + GAP;
+  const activeIdx = offset % categories.length;
+
+  const handleMouseEnter = () => {
+    pausedRef.current = true;
+    if (timerRef.current) clearInterval(timerRef.current);
+  };
+
+  const handleMouseLeave = () => {
+    pausedRef.current = false;
+    startTimer();
+  };
+
   return (
-    <section id="skills" className="py-20 bg-[var(--section-bg-2)] relative">
+    <section id="skills" className="py-20 bg-[var(--section-bg-2)] relative overflow-hidden">
       <div
         className="orb w-[500px] h-[500px] top-[-100px] right-[-200px] animate-float-slow"
         style={{
@@ -160,6 +233,7 @@ export default function Skills() {
       />
 
       <div className="max-w-6xl mx-auto px-6">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -177,59 +251,88 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {categories.map((cat, i) => {
-            const cfg = colorConfig[cat.color];
-            return (
-              <motion.div
-                key={cat.title}
-                initial={{ opacity: 0, y: 36 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.08, ease: "easeOut" }}
-                whileHover={{ y: -10, scale: 1.03, transition: { duration: 0.22, ease: "easeOut" } }}
-                className={`relative overflow-hidden rounded-2xl border ${cfg.card} ${cfg.hoverBorder} backdrop-blur-sm p-6 flex flex-col gap-4 cursor-default group transition-colors duration-300`}
-              >
-                {/* Top gradient accent bar — 3px thick */}
-                <div className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${cfg.accent}`} />
+        {/* Carousel track */}
+        <div
+          ref={trackRef}
+          className="overflow-hidden"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div
+            style={{
+              display: "flex",
+              gap: GAP,
+              transform: `translateX(-${offset * step}px)`,
+              transition: animated ? "transform 0.75s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
+            }}
+          >
+            {DUPED.map((cat, i) => {
+              const cfg = colorConfig[cat.color];
+              return (
+                <motion.div
+                  key={`${cat.title}-${i}`}
+                  style={{ width: cardW, flexShrink: 0, minHeight: 260 }}
+                  whileHover={{ y: -10, scale: 1.03, transition: { duration: 0.22, ease: "easeOut" } }}
+                  className={`relative overflow-hidden rounded-2xl border ${cfg.card} ${cfg.hoverBorder} backdrop-blur-sm p-6 flex flex-col gap-4 cursor-default group transition-colors duration-300`}
+                >
+                  {/* Top gradient accent bar */}
+                  <div className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${cfg.accent}`} />
 
-                {/* Shimmer sweep on hover */}
-                <div className="card-shimmer" />
+                  {/* Shimmer sweep */}
+                  <div className="card-shimmer" />
 
-                {/* Inner glow on hover */}
-                <div
-                  className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl bg-gradient-to-br ${cfg.glow} pointer-events-none`}
-                />
-
-                {/* Icon box + title */}
-                <div className="flex items-center gap-3 pt-1 relative z-10">
+                  {/* Inner glow on hover */}
                   <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 ${cfg.iconBg} group-hover:scale-110 transition-transform duration-200`}
-                  >
-                    {cat.emoji}
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold text-base leading-tight">{cat.title}</h3>
-                    <p className={`text-xs font-medium mt-0.5 ${cfg.meta}`}>
-                      {cat.skills.length} tools
-                    </p>
-                  </div>
-                </div>
+                    className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl bg-gradient-to-br ${cfg.glow} pointer-events-none`}
+                  />
 
-                {/* Color-matched gradient divider */}
-                <div className={`h-px bg-gradient-to-r ${cfg.divider} relative z-10`} />
+                  {/* Icon box + title */}
+                  <div className="flex items-center gap-3 pt-1 relative z-10">
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 ${cfg.iconBg} group-hover:scale-110 transition-transform duration-200`}
+                    >
+                      {cat.emoji}
+                    </div>
+                    <div>
+                      <h3 className="text-white font-bold text-base leading-tight">{cat.title}</h3>
+                      <p className={`text-xs font-medium mt-0.5 ${cfg.meta}`}>{cat.skills.length} tools</p>
+                    </div>
+                  </div>
 
-                {/* Skill badges */}
-                <div className="flex flex-wrap gap-1.5 relative z-10">
-                  {cat.skills.map((skill) => (
-                    <span key={skill} className={`skill-badge ${cfg.badge}`}>
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
+                  {/* Gradient divider */}
+                  <div className={`h-px bg-gradient-to-r ${cfg.divider} relative z-10`} />
+
+                  {/* Skill badges */}
+                  <div className="flex flex-wrap gap-1.5 relative z-10">
+                    {cat.skills.map((skill) => (
+                      <span key={skill} className={`skill-badge ${cfg.badge}`}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Dot navigation */}
+        <div className="flex justify-center items-center gap-2 mt-8">
+          {categories.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                setAnimated(true);
+                setOffset(i);
+              }}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`rounded-full transition-all duration-300 ${
+                activeIdx === i
+                  ? "w-6 h-1.5 bg-cyan-400"
+                  : "w-1.5 h-1.5 bg-slate-600 hover:bg-slate-400"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
