@@ -107,7 +107,7 @@ export default function Achievements() {
           className="text-center mb-16"
         >
           <p className="section-label">Impact & Results</p>
-          <h2 className="text-4xl font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             Key <span className="gradient-text">Achievements</span>
           </h2>
           <p className="text-slate-400 text-sm max-w-lg mx-auto leading-relaxed">
@@ -159,7 +159,7 @@ export default function Achievements() {
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className={`rounded-2xl border bg-gradient-to-br ${cfg.badge} p-6 glass-card cursor-default`}
+                className={`rounded-2xl border bg-gradient-to-br ${cfg.badge} p-7 glass-card cursor-default`}
               >
                 <div className="text-3xl mb-4">{a.emoji}</div>
                 <h3 className="text-white font-bold text-lg mb-3">{a.title}</h3>

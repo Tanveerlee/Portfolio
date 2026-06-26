@@ -111,7 +111,7 @@ export default function Skills() {
           className="text-center mb-16"
         >
           <p className="section-label">Technical Expertise</p>
-          <h2 className="text-4xl font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             My <span className="gradient-text">Tech Arsenal</span>
           </h2>
           <p className="text-slate-400 max-w-lg mx-auto text-sm leading-relaxed">

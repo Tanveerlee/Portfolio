@@ -6,7 +6,7 @@ import { GraduationCap, Award, CalendarDays, Building2 } from "lucide-react";
 export default function Education() {
   return (
     <section id="education" className="py-28 bg-[var(--section-bg-1)]">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -14,10 +14,13 @@ export default function Education() {
           className="mb-16"
         >
           <p className="section-label">Background</p>
-          <h2 className="text-4xl font-bold text-white">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             Education &{" "}
             <span className="gradient-text">Certifications</span>
           </h2>
+          <p className="text-slate-400 mt-4 max-w-lg text-sm leading-relaxed">
+            Formal CS degree and professional AI certification underpinning 6+ years of quality engineering practice.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">

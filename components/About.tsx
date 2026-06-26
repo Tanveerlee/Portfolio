@@ -51,11 +51,10 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <p className="section-label">About Me</p>
-            <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
-              Passionate about
-              <span className="gradient-text"> quality</span>,
-              <br />obsessed with
-              <span className="gradient-text"> automation</span>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              Building Reliable Software
+              <br />
+              <span className="gradient-text">Through Quality Engineering</span>
             </h2>
             <div className="space-y-4 text-slate-400 leading-relaxed">
               <p>
@@ -97,11 +96,11 @@ export default function About() {
                 viewport={{ once: true }}
                 whileHover={{ y: -4, scale: 1.02 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className={`p-5 rounded-2xl border bg-gradient-to-br ${colorMap[h.color]} glass-card cursor-default`}
+                className={`p-6 rounded-2xl border bg-gradient-to-br ${colorMap[h.color]} glass-card cursor-default`}
               >
                 <div aria-hidden="true" className={`mb-3 ${colorMap[h.color].split(" ").pop()}`}>{h.icon}</div>
-                <h3 className="text-white font-semibold mb-2 text-sm">{h.title}</h3>
-                <p className="text-slate-400 text-xs leading-relaxed">{h.desc}</p>
+                <h3 className="text-white font-semibold mb-2 text-base">{h.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{h.desc}</p>
               </motion.div>
             ))}
           </div>

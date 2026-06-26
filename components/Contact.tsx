@@ -101,7 +101,7 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <p className="section-label">Get In Touch</p>
-          <h2 className="text-4xl font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             Let&apos;s <span className="gradient-text">Connect</span>
           </h2>
           <p className="text-slate-400 text-sm max-w-lg mx-auto leading-relaxed">

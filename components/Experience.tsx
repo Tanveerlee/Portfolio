@@ -65,7 +65,7 @@ const colorConfig: Record<string, { ring: string; badge: string; dot: string; li
 export default function Experience() {
   return (
     <section id="experience" className="py-28 bg-[var(--section-bg-1)] relative">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ export default function Experience() {
           className="mb-16"
         >
           <p className="section-label">Career Journey</p>
-          <h2 className="text-4xl font-bold text-white">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             Work <span className="gradient-text">Experience</span>
           </h2>
           <p className="text-slate-400 mt-4 max-w-lg text-sm leading-relaxed">
