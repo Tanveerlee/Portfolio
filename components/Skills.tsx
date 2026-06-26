@@ -99,7 +99,7 @@ const colorConfig: Record<string, { card: string; badge: string; accent: string 
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-16 bg-[var(--section-bg-2)] relative">
+    <section id="skills" className="py-20 bg-[var(--section-bg-2)] relative">
       <div className="orb w-[500px] h-[500px] top-[-100px] right-[-200px] animate-float-slow"
         style={{ background: "radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%)", position: "absolute", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }} />
 
@@ -109,13 +109,13 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          className="text-center mb-12"
         >
           <p className="section-label">Technical Expertise</p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             My <span className="gradient-text">Tech Arsenal</span>
           </h2>
-          <p className="text-slate-400 max-w-lg mx-auto text-sm leading-relaxed">
+          <p className="text-slate-400 max-w-lg mx-auto text-base leading-relaxed">
             Tools and technologies I use to deliver quality software — from automation frameworks
             to performance and security testing.
           </p>
@@ -139,7 +139,7 @@ export default function Skills() {
 
                 <div className="flex items-center gap-2.5 pt-1">
                   <span className="text-xl" aria-hidden="true">{cat.emoji}</span>
-                  <h3 className="text-white font-semibold text-sm">{cat.title}</h3>
+                  <h3 className="text-white font-semibold text-base">{cat.title}</h3>
                 </div>
 
                 <div className="h-px bg-slate-800/70" />

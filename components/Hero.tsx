@@ -94,7 +94,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="h-8 overflow-hidden"
+              className="h-9 overflow-hidden"
               aria-live="polite"
               aria-atomic="true"
             >
@@ -104,7 +104,7 @@ export default function Hero() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -30, opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                className="text-xl font-semibold text-cyan-400 font-mono"
+                className="text-xl sm:text-2xl font-semibold text-cyan-400 font-mono"
               >
                 {roles[roleIdx]}
               </motion.p>
@@ -283,10 +283,10 @@ export default function Hero() {
                 whileHover={{ y: -5, scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className={`text-4xl font-black mb-1 bg-gradient-to-r ${s.color} bg-clip-text text-transparent`}>
+                <div className={`text-5xl font-black mb-1 bg-gradient-to-r ${s.color} bg-clip-text text-transparent`}>
                   <CountUp value={num} suffix={suffix} duration={1400 + i * 100} />
                 </div>
-                <div className="text-slate-400 text-xs font-medium">{s.label}</div>
+                <div className="text-slate-400 text-sm font-medium">{s.label}</div>
               </motion.div>
             );
           })}

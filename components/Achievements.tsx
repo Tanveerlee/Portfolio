@@ -95,7 +95,7 @@ const colorConfig: Record<string, { icon: string; metric: string; tag: string; b
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-16 bg-[var(--section-bg-2)] relative overflow-hidden">
+    <section id="achievements" className="py-20 bg-[var(--section-bg-2)] relative overflow-hidden">
       <div className="orb w-[400px] h-[400px] bottom-[-100px] left-[-100px] animate-float"
         style={{ background: "radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%)", position: "absolute", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }} />
 
@@ -104,13 +104,13 @@ export default function Achievements() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-12"
         >
           <p className="section-label">Impact & Results</p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             Key <span className="gradient-text">Achievements</span>
           </h2>
-          <p className="text-slate-400 text-sm max-w-lg mx-auto leading-relaxed">
+          <p className="text-slate-400 text-base max-w-lg mx-auto leading-relaxed">
             Measurable results and milestones that demonstrate real-world impact on quality and team performance.
           </p>
         </motion.div>
@@ -125,14 +125,14 @@ export default function Achievements() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -6, scale: 1.03 }}
                 transition={{ duration: 0.3, delay: i * 0.1 }}
+                whileHover={{ y: -6, scale: 1.03, transition: { duration: 0.2 } }}
                 className="glass-card p-5 text-center group cursor-default"
               >
                 <div className={`w-12 h-12 rounded-xl ${cfg.icon} flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}>
                   {m.icon}
                 </div>
-                <div className={`text-3xl font-black mb-1 ${cfg.metric}`}>
+                <div className={`text-4xl font-black mb-1 ${cfg.metric}`}>
                   {(() => {
                     const match = m.value.match(/^(\d+)(.*)$/);
                     const num = match ? parseInt(match[1]) : 0;
@@ -157,12 +157,12 @@ export default function Achievements() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className={`rounded-2xl border bg-gradient-to-br ${cfg.badge} p-7 glass-card cursor-default`}
               >
                 <div className="text-3xl mb-4">{a.emoji}</div>
-                <h3 className="text-white font-bold text-lg mb-3">{a.title}</h3>
+                <h3 className="text-white font-bold text-xl mb-3">{a.title}</h3>
                 <p className="text-slate-400 text-sm leading-relaxed mb-4">{a.desc}</p>
                 <div className="flex flex-wrap gap-2">
                   {a.tags.map((t) => (

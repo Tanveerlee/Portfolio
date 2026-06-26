@@ -88,7 +88,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-16 bg-[var(--section-bg-2)] relative overflow-hidden">
+    <section id="contact" className="py-20 bg-[var(--section-bg-2)] relative overflow-hidden">
       {/* bg orb */}
       <div className="orb w-[500px] h-[500px] top-[50%] right-[-200px] animate-float-slow"
         style={{ background: "radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%)", position: "absolute", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none", transform: "translateY(-50%)" }} />
@@ -98,13 +98,13 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-12"
         >
           <p className="section-label">Get In Touch</p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             Let&apos;s <span className="gradient-text">Connect</span>
           </h2>
-          <p className="text-slate-400 text-sm max-w-lg mx-auto leading-relaxed">
+          <p className="text-slate-400 text-base max-w-lg mx-auto leading-relaxed">
             Ready to improve your team&apos;s software quality? I&apos;m open to new opportunities,
             collaborations, and conversations about QA automation.
           </p>
