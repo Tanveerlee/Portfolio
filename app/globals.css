@@ -297,22 +297,76 @@ body {
    LIGHT MODE OVERRIDES
    ======================================== */
 
-/* ── Text ── */
-[data-theme="light"] .text-white { color: #0f172a; }
-[data-theme="light"] .text-slate-300 { color: #334155; }
-[data-theme="light"] .text-slate-400 { color: #475569; }
-[data-theme="light"] .text-slate-500 { color: #64748b; }
+/* ── Slate text — darken for readability ── */
+[data-theme="light"] .text-white     { color: #0f172a; }
+[data-theme="light"] .text-slate-300 { color: #1e293b; }   /* 13:1 on white */
+[data-theme="light"] .text-slate-400 { color: #334155; }   /* 9.7:1 on white */
+[data-theme="light"] .text-slate-500 { color: #475569; }   /* 6.1:1 on white */
 [data-theme="light"] .text-slate-600 { color: #475569; }
+
+/* ── Coloured accents → dark equivalents (WCAG AA ≥ 4.5:1 on white) ──
+   cyan-400 (#22d3ee) = 1.6:1 on white   → cyan-800   (#155e75) = 6.1:1
+   violet-400 (#a78bfa) = 2.3:1           → violet-800 (#5b21b6) = 7.6:1
+   emerald-400 (#34d399) = 1.7:1          → emerald-800(#065f46) = 9.8:1
+   amber-400 (#fbbf24) = 1.9:1            → amber-800  (#92400e) = 7.2:1
+   red-400 (#f87171) = 2.9:1              → red-800    (#991b1b) = 8.1:1
+   indigo-300 (#a5b4fc) = 2.5:1           → indigo-700 (#3730a3) = 8.2:1
+   teal-300 (#5eead4) = 1.5:1             → teal-700   (#0f766e) = 5.9:1 */
+[data-theme="light"] .text-cyan-300,
+[data-theme="light"] .text-cyan-400    { color: #155e75; }
+[data-theme="light"] .text-violet-300,
+[data-theme="light"] .text-violet-400  { color: #5b21b6; }
+[data-theme="light"] .text-emerald-300,
+[data-theme="light"] .text-emerald-400 { color: #065f46; }
+[data-theme="light"] .text-amber-300,
+[data-theme="light"] .text-amber-400   { color: #92400e; }
+[data-theme="light"] .text-red-300,
+[data-theme="light"] .text-red-400     { color: #991b1b; }
+[data-theme="light"] .text-indigo-300,
+[data-theme="light"] .text-indigo-400  { color: #3730a3; }
+[data-theme="light"] .text-teal-300,
+[data-theme="light"] .text-teal-400    { color: #0f766e; }
+
+/* ── Gradient text — dark version for light bg ── */
+[data-theme="light"] .gradient-text {
+  background-image: linear-gradient(135deg, #155e75 0%, #5b21b6 50%, #155e75 100%);
+}
+
+/* ── Section label — override inline colour ── */
+[data-theme="light"] .section-label { color: #155e75; }
+[data-theme="light"] .section-label::before {
+  background: linear-gradient(to left, rgba(21,94,117,0.6), transparent);
+}
+[data-theme="light"] .section-label::after {
+  background: linear-gradient(to right, rgba(21,94,117,0.6), transparent);
+}
+
+/* ── @apply-based component classes (class-name overrides can't reach these) ── */
+[data-theme="light"] .nav-link        { color: #334155; }
+[data-theme="light"] .nav-link:hover  { color: #0f172a; }
+[data-theme="light"] .nav-link.active { color: #155e75; }
+
+[data-theme="light"] .btn-secondary {
+  color: #1e293b;
+  background-color: rgba(255,255,255,0.9);
+  border-color: rgba(0,0,0,0.15);
+}
+[data-theme="light"] .btn-secondary:hover {
+  color: #0f172a;
+  background-color: #ffffff;
+  border-color: rgba(0,0,0,0.25);
+}
 
 /* Keep gradient button text always white */
 [data-theme="light"] .text-always-white { color: #ffffff !important; }
 
 /* ── Borders ── */
-[data-theme="light"] .border-white\/5  { border-color: rgba(0,0,0,0.06); }
-[data-theme="light"] .border-slate-800 { border-color: #e2e8f0; }
-[data-theme="light"] .border-slate-800\/60 { border-color: rgba(0,0,0,0.08); }
-[data-theme="light"] .border-slate-700\/40 { border-color: rgba(0,0,0,0.08); }
-[data-theme="light"] .border-slate-700\/60 { border-color: rgba(0,0,0,0.10); }
+[data-theme="light"] .border-white\/5   { border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .border-slate-800  { border-color: #cbd5e1; }
+[data-theme="light"] .border-slate-800\/60 { border-color: rgba(0,0,0,0.10); }
+[data-theme="light"] .border-slate-700\/40 { border-color: rgba(0,0,0,0.10); }
+[data-theme="light"] .border-slate-700\/60 { border-color: rgba(0,0,0,0.13); }
+[data-theme="light"] .border-slate-700\/50 { border-color: rgba(0,0,0,0.11); }
 
 /* ── Cards ── */
 [data-theme="light"] .glass-card {
@@ -321,20 +375,20 @@ body {
   box-shadow: 0 1px 4px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
 }
 [data-theme="light"] .glass-card:hover {
-  background-color: rgba(255,255,255,0.97);
-  border-color: rgba(34,211,238,0.25);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 0 24px rgba(34,211,238,0.08);
+  background-color: #ffffff;
+  border-color: rgba(21,94,117,0.20);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 0 0 1px rgba(21,94,117,0.08);
 }
 [data-theme="light"] .gradient-border-card {
   background:
     linear-gradient(#ffffff, #ffffff) padding-box,
-    linear-gradient(135deg, rgba(34,211,238,0.35), rgba(167,139,250,0.35)) border-box;
+    linear-gradient(135deg, rgba(21,94,117,0.30), rgba(91,33,182,0.30)) border-box;
 }
 [data-theme="light"] .gradient-border-card:hover {
   background:
     linear-gradient(#f8fafc, #f8fafc) padding-box,
-    linear-gradient(135deg, rgba(34,211,238,0.7), rgba(167,139,250,0.7)) border-box;
-  box-shadow: 0 8px 40px rgba(34,211,238,0.10), 0 4px 20px rgba(167,139,250,0.07);
+    linear-gradient(135deg, rgba(21,94,117,0.60), rgba(91,33,182,0.60)) border-box;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 4px 16px rgba(21,94,117,0.08);
 }
 
 /* ── Input fields ── */
