@@ -7,25 +7,25 @@ const highlights = [
   {
     icon: <Shield size={22} />,
     title: "Quality Guardian",
-    desc: "Ensuring every release meets the highest standards before reaching users.",
+    desc: "Owning quality from requirement reviews to production — 90+ releases shipped without critical defects.",
     color: "cyan",
   },
   {
     icon: <Zap size={22} />,
     title: "Automation First",
-    desc: "Building scalable frameworks that catch bugs before they ship.",
+    desc: "Cutting regression effort by 40% through CI-integrated Playwright suites that catch defects before merge.",
     color: "violet",
   },
   {
     icon: <Code2 size={22} />,
     title: "Framework Architect",
-    desc: "Designed Playwright POM frameworks from scratch for maximum maintainability.",
+    desc: "Designed Playwright POM frameworks from scratch — scalable, reusable, and fully wired into CI/CD pipelines.",
     color: "emerald",
   },
   {
     icon: <Users size={22} />,
     title: "Team Mentor",
-    desc: "Upskilling junior QA engineers on best practices and modern tooling.",
+    desc: "Coaching QA engineers on shift-left testing, automation patterns, and strategic defect management.",
     color: "amber",
   },
 ];
@@ -56,9 +56,9 @@ export default function About() {
               <span className="gradient-text">QA Engineer</span>
             </h2>
             <p className="text-slate-400 leading-relaxed text-base">
-              Senior Software QA Engineer with 6+ years of experience in Playwright automation, API testing,
-              SQL validation, and performance testing. I help teams build reliable software through scalable
-              automation and modern QA practices.
+              I architect Playwright automation frameworks and own end-to-end test strategy — turning QA from
+              a bottleneck into a release accelerator. 6+ years delivering measurable results: 40% regression
+              reduction, 300+ bugs tracked to resolution, and 90+ defect-free production releases.
             </p>
 
             <div className="mt-5 flex flex-wrap gap-3">
