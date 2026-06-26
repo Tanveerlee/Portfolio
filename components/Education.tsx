@@ -13,7 +13,7 @@ export default function Education() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <p className="text-cyan-400 font-mono text-sm tracking-widest uppercase mb-3">Background</p>
+          <p className="section-label">Background</p>
           <h2 className="text-4xl font-bold text-white">
             Education &{" "}
             <span className="gradient-text">Certifications</span>

@@ -65,45 +65,147 @@ body {
 .animate-float-delay { animation: float 6s ease-in-out 2s infinite; }
 .animate-glow-pulse { animation: glowPulse 3s ease-in-out infinite; }
 
-@layer components {
-  .glass-card {
-    @apply rounded-2xl border border-slate-800/60 bg-slate-900/40 backdrop-blur-sm;
-  }
+/* ── New keyframes ── */
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(34,211,238,0.08), 0 0 40px rgba(34,211,238,0.04); }
+  50%       { box-shadow: 0 0 35px rgba(34,211,238,0.22), 0 0 70px rgba(34,211,238,0.10); }
+}
+@keyframes borderFlow {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1;   }
+}
+@keyframes scanline {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(400%);  opacity: 0; }
+}
 
-  .gradient-text {
-    @apply bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent;
+/* ── Animation utility classes ── */
+.animate-gradient-flow { animation: gradientFlow 4s ease infinite; }
+.animate-shimmer       { animation: shimmer 2.5s linear infinite; }
+.animate-pulse-glow    { animation: pulseGlow 3s ease-in-out infinite; }
+.animate-border-flow   { animation: borderFlow 3s ease-in-out infinite; }
+
+/* ── Hero background + grid ── */
+.hero-bg {
+  background-color: #030712;
+}
+.hero-bg.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(34,211,238,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 90% 90%, rgba(167,139,250,0.10) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 40% at 10% 60%, rgba(52,211,153,0.06) 0%, transparent 50%);
+  background-size: 60px 60px, 60px 60px, 100% 100%, 100% 100%, 100% 100%;
+}
+
+@layer components {
+  /* ── Cards ── */
+  .glass-card {
+    @apply rounded-2xl border border-slate-800/60 bg-slate-900/40 backdrop-blur-sm transition-all duration-300;
+  }
+  .glass-card:hover {
+    @apply border-slate-700/50;
+    background-color: rgba(15, 23, 42, 0.65);
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(255,255,255,0.04),
+      0 0 28px rgba(34,211,238,0.06);
   }
 
   .gradient-border-card {
-    @apply rounded-2xl;
-    background: linear-gradient(#0b1628, #0b1628) padding-box,
-                linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(167, 139, 250, 0.2)) border-box;
+    @apply rounded-2xl transition-all duration-300;
+    background:
+      linear-gradient(#0b1628, #0b1628) padding-box,
+      linear-gradient(135deg, rgba(34,211,238,0.22), rgba(167,139,250,0.22)) border-box;
     border: 1px solid transparent;
   }
+  .gradient-border-card:hover {
+    background:
+      linear-gradient(#0e1c35, #0e1c35) padding-box,
+      linear-gradient(135deg, rgba(34,211,238,0.55), rgba(167,139,250,0.55)) border-box;
+    box-shadow:
+      0 8px 40px rgba(34,211,238,0.09),
+      0 4px 20px rgba(167,139,250,0.07);
+  }
 
+  /* ── Gradient text — animated flowing ── */
+  .gradient-text {
+    background-image: linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #22d3ee 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientFlow 4s ease infinite;
+  }
+
+  /* ── Buttons ── */
   .btn-primary {
     @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-0.5 active:translate-y-0;
   }
-
   .btn-secondary {
     @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-700/60 bg-slate-800/50 text-slate-300 font-semibold text-sm transition-all duration-200 hover:border-slate-600 hover:bg-slate-800 hover:-translate-y-0.5 active:translate-y-0;
   }
 
+  /* ── Nav ── */
   .nav-link {
     @apply text-sm font-medium text-slate-400 transition-colors duration-200 hover:text-white;
   }
-
   .nav-link.active {
     @apply text-cyan-400;
   }
 
+  /* ── Skill badge ── */
   .skill-badge {
-    @apply text-xs px-2.5 py-1 rounded-full font-medium transition-colors duration-150;
+    @apply text-xs px-2.5 py-1 rounded-full font-medium transition-all duration-200;
+  }
+  .skill-badge:hover {
+    transform: translateY(-1px);
   }
 
+  /* ── Orb ── */
   .orb {
     @apply absolute rounded-full pointer-events-none;
     filter: blur(80px);
+  }
+
+  /* ── Section label with decorative lines ── */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgb(34, 211, 238);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 1.5rem;
+    flex-shrink: 0;
+    background: linear-gradient(to left, rgba(34,211,238,0.7), transparent);
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 1.5rem;
+    flex-shrink: 0;
+    background: linear-gradient(to right, rgba(34,211,238,0.7), transparent);
   }
 }
 

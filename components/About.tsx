@@ -50,9 +50,7 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-cyan-400 font-mono text-sm tracking-widest uppercase mb-4">
-              About Me
-            </p>
+            <p className="section-label">About Me</p>
             <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
               Passionate about
               <span className="gradient-text"> quality</span>,
@@ -97,8 +95,9 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`p-5 rounded-2xl border bg-gradient-to-br ${colorMap[h.color]} glass-card`}
+                whileHover={{ y: -4, scale: 1.02 }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className={`p-5 rounded-2xl border bg-gradient-to-br ${colorMap[h.color]} glass-card cursor-default`}
               >
                 <div className={`mb-3 ${colorMap[h.color].split(" ").pop()}`}>{h.icon}</div>
                 <h3 className="text-white font-semibold mb-2 text-sm">{h.title}</h3>

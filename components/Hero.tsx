@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Mail, Download, ArrowRight, CheckCircle, AlertCircle, Loader } from "lucide-react";
 import { motion } from "framer-motion";
 import { LinkedInIcon, GitHubIcon } from "@/components/icons";
+import CountUp from "@/components/CountUp";
 
 const stats = [
   { value: "6+", label: "Years Experience", color: "from-cyan-400 to-cyan-600" },
@@ -270,14 +271,24 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.7 }}
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
-          {stats.map((s) => (
-            <div key={s.label} className="glass-card p-5 text-center">
-              <div className={`text-4xl font-black mb-1 bg-gradient-to-r ${s.color} bg-clip-text text-transparent`}>
-                {s.value}
-              </div>
-              <div className="text-slate-400 text-xs font-medium">{s.label}</div>
-            </div>
-          ))}
+          {stats.map((s, i) => {
+            const match = s.value.match(/^(\d+)(.*)$/);
+            const num = match ? parseInt(match[1]) : 0;
+            const suffix = match ? match[2] : s.value;
+            return (
+              <motion.div
+                key={s.label}
+                className="glass-card p-5 text-center"
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className={`text-4xl font-black mb-1 bg-gradient-to-r ${s.color} bg-clip-text text-transparent`}>
+                  <CountUp value={num} suffix={suffix} duration={1400 + i * 100} />
+                </div>
+                <div className="text-slate-400 text-xs font-medium">{s.label}</div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
 

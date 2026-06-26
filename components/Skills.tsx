@@ -110,9 +110,7 @@ export default function Skills() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <p className="text-cyan-400 font-mono text-sm tracking-widest uppercase mb-3">
-            Technical Expertise
-          </p>
+          <p className="section-label">Technical Expertise</p>
           <h2 className="text-4xl font-bold text-white mb-4">
             My <span className="gradient-text">Tech Arsenal</span>
           </h2>
@@ -131,8 +129,9 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-                className={`rounded-2xl border p-5 ${cfg.card} backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/30`}
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ duration: 0.3, delay: i * 0.06 }}
+                className={`rounded-2xl border p-5 ${cfg.card} backdrop-blur-sm transition-colors duration-300`}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-2xl">{cat.emoji}</span>

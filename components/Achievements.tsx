@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { TrendingUp, Bug, Shield, Layers } from "lucide-react";
+import CountUp from "@/components/CountUp";
 
 const metrics = [
   {
@@ -105,7 +106,7 @@ export default function Achievements() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-cyan-400 font-mono text-sm tracking-widest uppercase mb-3">Impact & Results</p>
+          <p className="section-label">Impact & Results</p>
           <h2 className="text-4xl font-bold text-white mb-4">
             Key <span className="gradient-text">Achievements</span>
           </h2>
@@ -124,13 +125,21 @@ export default function Achievements() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="glass-card p-5 text-center group"
+                whileHover={{ y: -6, scale: 1.03 }}
+                transition={{ duration: 0.3, delay: i * 0.1 }}
+                className="glass-card p-5 text-center group cursor-default"
               >
-                <div className={`w-12 h-12 rounded-xl ${cfg.icon} flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform`}>
+                <div className={`w-12 h-12 rounded-xl ${cfg.icon} flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}>
                   {m.icon}
                 </div>
-                <div className={`text-3xl font-black mb-1 ${cfg.metric}`}>{m.value}</div>
+                <div className={`text-3xl font-black mb-1 ${cfg.metric}`}>
+                  {(() => {
+                    const match = m.value.match(/^(\d+)(.*)$/);
+                    const num = match ? parseInt(match[1]) : 0;
+                    const suf = match ? match[2] : m.value;
+                    return <CountUp value={num} suffix={suf} duration={1500 + i * 150} />;
+                  })()}
+                </div>
                 <div className="text-white text-xs font-semibold mb-1">{m.label}</div>
                 <div className="text-slate-500 text-xs">{m.desc}</div>
               </motion.div>
@@ -148,8 +157,9 @@ export default function Achievements() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`rounded-2xl border bg-gradient-to-br ${cfg.badge} p-6 glass-card`}
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className={`rounded-2xl border bg-gradient-to-br ${cfg.badge} p-6 glass-card cursor-default`}
               >
                 <div className="text-3xl mb-4">{a.emoji}</div>
                 <h3 className="text-white font-bold text-lg mb-3">{a.title}</h3>

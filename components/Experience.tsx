@@ -73,7 +73,7 @@ export default function Experience() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <p className="text-cyan-400 font-mono text-sm tracking-widest uppercase mb-3">Career Journey</p>
+          <p className="section-label">Career Journey</p>
           <h2 className="text-4xl font-bold text-white">
             Work <span className="gradient-text">Experience</span>
           </h2>
@@ -100,7 +100,9 @@ export default function Experience() {
                   className="relative"
                 >
                   {/* Timeline dot */}
-                  <div className={`absolute -left-[26px] w-4 h-4 rounded-full shadow-lg ${cfg.dot} border-2 border-[#030712] top-6`} />
+                  <div className={`absolute -left-[26px] w-4 h-4 rounded-full shadow-lg ${cfg.dot} border-2 border-[#030712] top-6`}>
+                    <div className={`absolute inset-0 rounded-full ${cfg.dot} animate-ping opacity-30`} />
+                  </div>
 
                   <div className="glass-card p-7">
                     {/* Header */}
