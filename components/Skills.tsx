@@ -40,7 +40,7 @@ const categories = [
     skills: ["JIRA", "TestRail", "Linear", "Asana", "Trello"],
   },
   {
-    title: "DevOps & Version Control",
+    title: "DevOps & CI/CD",
     emoji: "🔧",
     color: "slate",
     skills: ["Git", "GitHub", "CI/CD", "Virtual Machines"],
@@ -53,48 +53,49 @@ const categories = [
   },
 ];
 
-const colorConfig: Record<string, { card: string; badge: string; dot: string }> = {
+const colorConfig: Record<string, { card: string; badge: string; accent: string }> = {
   cyan: {
     card: "border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 to-transparent",
-    badge: "bg-cyan-500/15 text-cyan-300 border border-cyan-500/20 hover:bg-cyan-500/25",
-    dot: "bg-cyan-400",
+    badge: "bg-cyan-500/15 text-cyan-300 border border-cyan-500/20 hover:bg-cyan-500/30",
+    accent: "from-cyan-400 to-cyan-600",
   },
   violet: {
     card: "border-violet-500/20 bg-gradient-to-br from-violet-500/10 to-transparent",
-    badge: "bg-violet-500/15 text-violet-300 border border-violet-500/20 hover:bg-violet-500/25",
-    dot: "bg-violet-400",
+    badge: "bg-violet-500/15 text-violet-300 border border-violet-500/20 hover:bg-violet-500/30",
+    accent: "from-violet-400 to-violet-600",
   },
   amber: {
     card: "border-amber-500/20 bg-gradient-to-br from-amber-500/10 to-transparent",
-    badge: "bg-amber-500/15 text-amber-300 border border-amber-500/20 hover:bg-amber-500/25",
-    dot: "bg-amber-400",
+    badge: "bg-amber-500/15 text-amber-300 border border-amber-500/20 hover:bg-amber-500/30",
+    accent: "from-amber-400 to-orange-500",
   },
   red: {
     card: "border-red-500/20 bg-gradient-to-br from-red-500/10 to-transparent",
-    badge: "bg-red-500/15 text-red-300 border border-red-500/20 hover:bg-red-500/25",
-    dot: "bg-red-400",
+    badge: "bg-red-500/15 text-red-300 border border-red-500/20 hover:bg-red-500/30",
+    accent: "from-red-400 to-red-600",
   },
   emerald: {
     card: "border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 to-transparent",
-    badge: "bg-emerald-500/15 text-emerald-300 border border-emerald-500/20 hover:bg-emerald-500/25",
-    dot: "bg-emerald-400",
+    badge: "bg-emerald-500/15 text-emerald-300 border border-emerald-500/20 hover:bg-emerald-500/30",
+    accent: "from-emerald-400 to-emerald-600",
   },
   indigo: {
     card: "border-indigo-500/20 bg-gradient-to-br from-indigo-500/10 to-transparent",
-    badge: "bg-indigo-500/15 text-indigo-300 border border-indigo-500/20 hover:bg-indigo-500/25",
-    dot: "bg-indigo-400",
+    badge: "bg-indigo-500/15 text-indigo-300 border border-indigo-500/20 hover:bg-indigo-500/30",
+    accent: "from-indigo-400 to-indigo-600",
   },
   slate: {
     card: "border-slate-500/20 bg-gradient-to-br from-slate-500/10 to-transparent",
-    badge: "bg-slate-500/15 text-slate-300 border border-slate-500/20 hover:bg-slate-500/25",
-    dot: "bg-slate-400",
+    badge: "bg-slate-500/15 text-slate-300 border border-slate-500/20 hover:bg-slate-500/30",
+    accent: "from-slate-400 to-slate-600",
   },
   teal: {
     card: "border-teal-500/20 bg-gradient-to-br from-teal-500/10 to-transparent",
-    badge: "bg-teal-500/15 text-teal-300 border border-teal-500/20 hover:bg-teal-500/25",
-    dot: "bg-teal-400",
+    badge: "bg-teal-500/15 text-teal-300 border border-teal-500/20 hover:bg-teal-500/30",
+    accent: "from-teal-400 to-teal-600",
   },
 };
+
 
 export default function Skills() {
   return (
@@ -120,23 +121,29 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {categories.map((cat, i) => {
             const cfg = colorConfig[cat.color];
             return (
               <motion.div
                 key={cat.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -3 }}
-                transition={{ duration: 0.3, delay: i * 0.06 }}
-                className={`p-5 rounded-xl border ${cfg.card} backdrop-blur-sm transition-all duration-200`}
+                transition={{ duration: 0.4, delay: i * 0.07 }}
+                whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.2 } }}
+                className={`relative overflow-hidden rounded-2xl border ${cfg.card} backdrop-blur-sm p-5 flex flex-col gap-3 cursor-default group`}
               >
-                <div className="flex items-center gap-2.5 mb-3 pb-3 border-b border-slate-800/60">
-                  <span className="text-lg" aria-hidden="true">{cat.emoji}</span>
+                {/* Colored accent bar */}
+                <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${cfg.accent}`} />
+
+                <div className="flex items-center gap-2.5 pt-1">
+                  <span className="text-xl" aria-hidden="true">{cat.emoji}</span>
                   <h3 className="text-white font-semibold text-sm">{cat.title}</h3>
                 </div>
+
+                <div className="h-px bg-slate-800/70" />
+
                 <div className="flex flex-wrap gap-1.5">
                   {cat.skills.map((skill) => (
                     <span key={skill} className={`skill-badge ${cfg.badge}`}>
