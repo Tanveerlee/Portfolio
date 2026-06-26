@@ -30,9 +30,10 @@ export default function Education() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="gradient-border-card p-7"
+            className="relative overflow-hidden gradient-border-card p-7 group"
           >
-            <div className="flex items-center gap-4 mb-6">
+            <div className="card-shimmer" />
+            <div className="flex items-center gap-4 mb-6 relative z-10">
               <div aria-hidden="true" className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-500/20 flex items-center justify-center">
                 <GraduationCap size={26} className="text-cyan-400" />
               </div>
@@ -42,7 +43,7 @@ export default function Education() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 relative z-10">
               <div>
                 <h4 className="text-white font-semibold text-lg mb-1">Computer Science</h4>
                 <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
@@ -70,9 +71,10 @@ export default function Education() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="gradient-border-card p-7"
+            className="relative overflow-hidden gradient-border-card p-7 group"
           >
-            <div className="flex items-center gap-4 mb-6">
+            <div className="card-shimmer" />
+            <div className="flex items-center gap-4 mb-6 relative z-10">
               <div aria-hidden="true" className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-600/10 border border-violet-500/20 flex items-center justify-center">
                 <Award size={26} className="text-violet-400" />
               </div>
@@ -82,7 +84,7 @@ export default function Education() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 relative z-10">
               <div>
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-white font-semibold">Huawei HCIA-AI</span>

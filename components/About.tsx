@@ -83,9 +83,10 @@ export default function About() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 whileHover={{ y: -4, scale: 1.02, transition: { duration: 0.2 } }}
-                className={`p-5 rounded-2xl border bg-gradient-to-br ${colorMap[h.color]} glass-card cursor-default`}
+                className={`relative overflow-hidden p-5 rounded-2xl border bg-gradient-to-br ${colorMap[h.color]} glass-card cursor-default`}
               >
-                <div className="flex items-start gap-3">
+                <div className="card-shimmer" />
+                <div className="flex items-start gap-3 relative z-10">
                   <div aria-hidden="true" className={`mt-0.5 flex-shrink-0 ${colorMap[h.color].split(" ").pop()}`}>{h.icon}</div>
                   <div>
                     <h3 className="text-white font-semibold mb-1.5 text-base">{h.title}</h3>

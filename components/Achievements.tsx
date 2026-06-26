@@ -127,12 +127,13 @@ export default function Achievements() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: i * 0.1 }}
                 whileHover={{ y: -6, scale: 1.03, transition: { duration: 0.2 } }}
-                className="glass-card p-5 text-center group cursor-default"
+                className="relative overflow-hidden glass-card p-5 text-center group cursor-default"
               >
-                <div className={`w-12 h-12 rounded-xl ${cfg.icon} flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}>
+                <div className="card-shimmer" />
+                <div className={`w-12 h-12 rounded-xl ${cfg.icon} flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 relative z-10`}>
                   {m.icon}
                 </div>
-                <div className={`text-4xl font-black mb-1 ${cfg.metric}`}>
+                <div className={`text-4xl font-black mb-1 ${cfg.metric} relative z-10`}>
                   {(() => {
                     const match = m.value.match(/^(\d+)(.*)$/);
                     const num = match ? parseInt(match[1]) : 0;
@@ -140,8 +141,8 @@ export default function Achievements() {
                     return <CountUp value={num} suffix={suf} duration={1500 + i * 150} />;
                   })()}
                 </div>
-                <div className="text-white text-xs font-semibold mb-1">{m.label}</div>
-                <div className="text-slate-500 text-xs">{m.desc}</div>
+                <div className="text-white text-xs font-semibold mb-1 relative z-10">{m.label}</div>
+                <div className="text-slate-500 text-xs relative z-10">{m.desc}</div>
               </motion.div>
             );
           })}
@@ -159,12 +160,13 @@ export default function Achievements() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className={`rounded-2xl border bg-gradient-to-br ${cfg.badge} p-7 glass-card cursor-default`}
+                className={`relative overflow-hidden rounded-2xl border bg-gradient-to-br ${cfg.badge} p-7 glass-card cursor-default group`}
               >
-                <div className="text-3xl mb-4">{a.emoji}</div>
-                <h3 className="text-white font-bold text-xl mb-3">{a.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-4">{a.desc}</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="card-shimmer" />
+                <div className="text-3xl mb-4 relative z-10">{a.emoji}</div>
+                <h3 className="text-white font-bold text-xl mb-3 relative z-10">{a.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4 relative z-10">{a.desc}</p>
+                <div className="flex flex-wrap gap-2 relative z-10">
                   {a.tags.map((t) => (
                     <span key={t} className={`text-xs px-3 py-1 rounded-full border ${cfg.tag}`}>
                       {t}

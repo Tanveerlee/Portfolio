@@ -104,9 +104,10 @@ export default function Experience() {
                     <div className={`absolute inset-0 rounded-full ${cfg.dot} animate-ping opacity-30`} />
                   </div>
 
-                  <div className="glass-card p-7">
+                  <div className="relative overflow-hidden glass-card p-7 group">
+                    <div className="card-shimmer" />
                     {/* Header */}
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5 relative z-10">
                       <div>
                         <div className="flex items-center gap-3 mb-2">
                           <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${cfg.badge}`}>
@@ -135,7 +136,7 @@ export default function Experience() {
                     </div>
 
                     {/* Bullet points */}
-                    <ul className="space-y-2.5 mb-5" aria-label={`Responsibilities at ${job.company}`}>
+                    <ul className="space-y-2.5 mb-5 relative z-10" aria-label={`Responsibilities at ${job.company}`}>
                       {job.points.map((p) => (
                         <li key={p} className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
                           <CheckCircle2 size={14} aria-hidden="true" className="text-emerald-400 flex-shrink-0 mt-0.5" />
@@ -145,7 +146,7 @@ export default function Experience() {
                     </ul>
 
                     {/* Tech stack */}
-                    <div className="border-t border-slate-800 pt-4">
+                    <div className="border-t border-slate-800 pt-4 relative z-10">
                       <p className="text-xs text-slate-500 mb-2 font-medium uppercase tracking-wide">Key Tools</p>
                       <div className="flex flex-wrap gap-2">
                         {job.techStack.map((t) => (
