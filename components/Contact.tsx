@@ -2,20 +2,44 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, ExternalLink } from "lucide-react";
 import { LinkedInIcon, GitHubIcon } from "@/components/icons";
 
+// Get your free key at https://web3forms.com/ — add it to .env.local as NEXT_PUBLIC_WEB3FORMS_KEY
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "";
+
 export default function Contact() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Opens default email client with form data
-    const mailto = `mailto:tanveerashraf02@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(`From: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)}`;
-    window.location.href = mailto;
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Portfolio contact from ${form.name}`,
+          from_name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4000);
+      }
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   const contacts = [
@@ -204,21 +228,28 @@ export default function Contact() {
                 </div>
                 <button
                   type="submit"
-                  className="btn-primary w-full justify-center"
+                  disabled={status === "sending"}
+                  className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
                   aria-live="polite"
                 >
-                  {sent ? (
-                    <>
-                      <CheckCircle size={16} aria-hidden="true" />
-                      Email Client Opened
-                    </>
-                  ) : (
-                    <>
-                      <Send size={16} aria-hidden="true" />
-                      Send Message
-                    </>
+                  {status === "sending" && (
+                    <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" aria-hidden="true" />Sending…</>
+                  )}
+                  {status === "success" && (
+                    <><CheckCircle size={16} aria-hidden="true" />Message Sent!</>
+                  )}
+                  {status === "error" && (
+                    <><AlertCircle size={16} aria-hidden="true" />Failed — try email directly</>
+                  )}
+                  {status === "idle" && (
+                    <><Send size={16} aria-hidden="true" />Send Message</>
                   )}
                 </button>
+                {!WEB3FORMS_KEY && (
+                  <p className="text-amber-400 text-xs text-center mt-2">
+                    ⚠ Add <code className="font-mono">NEXT_PUBLIC_WEB3FORMS_KEY</code> in Vercel env vars to enable direct sending.
+                  </p>
+                )}
               </form>
             </div>
           </motion.div>

@@ -26,6 +26,21 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Tanveer Hussain",
+  jobTitle: "Senior QA Automation Engineer",
+  url: "https://tanveer-sqa.vercel.app",
+  email: "tanveerashraf02@gmail.com",
+  address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
+  sameAs: [
+    "https://linkedin.com/in/tanveer-hussain-sqa",
+    "https://github.com/Tanveerlee",
+  ],
+  knowsAbout: ["Playwright", "Cypress", "Postman", "JMeter", "CI/CD", "API Testing", "Agile"],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -33,6 +48,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="bg-[var(--section-bg-1)] text-white antialiased min-h-screen" suppressHydrationWarning>
         <ThemeProvider>
           <MotionConfig reducedMotion="user">

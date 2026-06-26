@@ -26,5 +26,6 @@ export default function CountUp({ value, suffix = "", duration = 1600, className
     requestAnimationFrame(tick);
   }, [inView, value, suffix, duration]);
 
-  return <span ref={ref} className={className}>0{suffix}</span>;
+  // SSR and pre-animation: render real value so crawlers and bots see correct numbers
+  return <span ref={ref} className={className}>{value}{suffix}</span>;
 }

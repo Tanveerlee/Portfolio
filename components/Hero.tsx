@@ -24,9 +24,9 @@ const testLines = [
 
 const roles = [
   "Senior QA Automation Engineer",
-  "Playwright Framework Architect",
-  "API Testing Specialist",
-  "Quality Assurance Leader",
+  "Playwright & Cypress Expert",
+  "CI/CD Quality Advocate",
+  "API & Performance Tester",
 ];
 
 export default function Hero() {
@@ -84,7 +84,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <p className="text-slate-400 font-mono text-sm tracking-widest uppercase mb-3">
-                Hello, I&apos;m
+                Based in Lahore, Pakistan
               </p>
               <h1 className="text-5xl sm:text-6xl font-black tracking-tight leading-none">
                 <span className="gradient-text">Tanveer</span>
@@ -257,8 +257,8 @@ export default function Hero() {
             {/* Mini stat cards */}
             <div className="grid grid-cols-2 gap-3 mt-4">
               {[
-                { icon: "🛡️", label: "Zero Critical Bugs Shipped", color: "emerald" },
-                { icon: "⚡", label: "CI/CD Pipeline Integrated", color: "cyan" },
+                { icon: "📉", label: "40% Regression Reduction", color: "emerald" },
+                { icon: "🚀", label: "90+ Releases Delivered", color: "cyan" },
               ].map((card) => (
                 <div key={card.label} className="glass-card p-3 flex items-center gap-3">
                   <span className="text-xl">{card.icon}</span>

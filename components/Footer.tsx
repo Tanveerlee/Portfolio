@@ -19,7 +19,7 @@ export default function Footer() {
 
           {/* Nav */}
           <div className="flex items-center gap-6 text-xs text-slate-500">
-            {["About", "Skills", "Experience", "Contact"].map((l) => (
+            {["About", "Skills", "Experience", "Achievements", "Education", "Contact"].map((l) => (
               <a
                 key={l}
                 href={`#${l.toLowerCase()}`}

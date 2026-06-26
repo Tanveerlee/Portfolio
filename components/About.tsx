@@ -76,7 +76,7 @@ export default function About() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              {["Lahore, Pakistan", "+92-333-739-1022", "tanveerashraf02@gmail.com"].map((item) => (
+              {["Lahore, Pakistan", "tanveerashraf02@gmail.com"].map((item) => (
                 <span
                   key={item}
                   className="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700/50 text-slate-300 text-sm"
