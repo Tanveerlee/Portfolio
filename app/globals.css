@@ -267,6 +267,14 @@ body {
   }
 
   /* ── Card shimmer — diagonal light sweep on group hover ── */
+  [data-theme="light"] .card-shimmer {
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(0, 0, 0, 0.04) 50%,
+      transparent 65%
+    );
+  }
   .card-shimmer {
     position: absolute;
     top: 0;
