@@ -51,30 +51,16 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <p className="section-label">About Me</p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
-              Building Reliable Software
-              <br />
-              <span className="gradient-text">Through Quality Engineering</span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
+              Senior Software <span className="gradient-text">QA Engineer</span>
             </h2>
-            <div className="space-y-4 text-slate-400 leading-relaxed">
-              <p>
-                I&apos;m a <span className="text-white font-semibold">Senior QA Automation Engineer</span> based
-                in Lahore, Pakistan, with over 6 years of experience ensuring software ships without defects.
-                I specialize in building automation frameworks that scale and finding bugs that matter.
-              </p>
-              <p>
-                At <span className="text-cyan-400 font-semibold">Conovo Technologies</span>, I architected a
-                Playwright automation framework from scratch using Page Object Model architecture — reducing
-                regression testing effort by <span className="text-emerald-400 font-semibold">30–40%</span> and
-                increasing overall test coverage by <span className="text-emerald-400 font-semibold">25%</span>.
-              </p>
-              <p>
-                I believe quality is a team sport. I embed QA early in the development cycle, collaborate closely
-                with developers, and mentor junior engineers to build a culture of quality from the ground up.
-              </p>
-            </div>
+            <p className="text-slate-400 leading-relaxed text-base">
+              Senior Software QA Engineer with 6+ years of experience in Playwright automation, API testing,
+              SQL validation, and performance testing. I help teams build reliable software through scalable
+              automation and modern QA practices.
+            </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-wrap gap-3">
               {["Lahore, Pakistan", "tanveerashraf02@gmail.com"].map((item) => (
                 <span
                   key={item}
