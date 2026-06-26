@@ -51,7 +51,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <p className="section-label">About Me</p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
               Building Reliable Software
               <br />
               <span className="gradient-text">Through Quality Engineering</span>
