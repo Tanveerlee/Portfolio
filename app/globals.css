@@ -168,6 +168,10 @@ body {
 .animate-pulse-glow    { animation: pulseGlow 3s ease-in-out infinite; }
 .animate-border-flow   { animation: borderFlow 3s ease-in-out infinite; }
 
+/* ── Hero surname — explicit colour for both themes ── */
+.hero-surname          { color: #ffffff; }
+[data-theme="light"] .hero-surname { color: #0f172a; }
+
 /* ── Hero background + grid ── */
 .hero-bg {
   /* Deep navy-indigo — visually distinct from the rest of the page */

@@ -89,7 +89,7 @@ export default function Hero() {
               <h1 className="text-5xl sm:text-6xl font-black tracking-tight leading-none">
                 <span className="gradient-text">Tanveer</span>
                 <br />
-                <span className="text-white">Hussain</span>
+                <span className="hero-surname">Hussain</span>
               </h1>
             </motion.div>
 
