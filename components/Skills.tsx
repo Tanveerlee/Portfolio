@@ -98,7 +98,7 @@ const colorConfig: Record<string, { card: string; badge: string; dot: string }> 
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-[var(--section-bg-2)] relative">
+    <section id="skills" className="py-16 bg-[var(--section-bg-2)] relative">
       <div className="orb w-[500px] h-[500px] top-[-100px] right-[-200px] animate-float-slow"
         style={{ background: "radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%)", position: "absolute", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }} />
 
@@ -108,7 +108,7 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <p className="section-label">Technical Expertise</p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
@@ -120,23 +120,23 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="space-y-2.5">
           {categories.map((cat, i) => {
             const cfg = colorConfig[cat.color];
             return (
               <motion.div
                 key={cat.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                transition={{ duration: 0.3, delay: i * 0.06 }}
-                className={`rounded-2xl border p-5 ${cfg.card} backdrop-blur-sm transition-colors duration-300`}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+                className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 px-5 py-4 rounded-xl border ${cfg.card} backdrop-blur-sm hover:bg-slate-800/20 transition-all duration-200`}
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{cat.emoji}</span>
-                  <h3 className="text-white font-semibold text-sm leading-tight">{cat.title}</h3>
+                <div className="flex items-center gap-3 sm:w-52 sm:flex-shrink-0">
+                  <span className="text-xl" aria-hidden="true">{cat.emoji}</span>
+                  <h3 className="text-white font-semibold text-sm">{cat.title}</h3>
                 </div>
+                <div className="hidden sm:block w-px h-5 bg-slate-700/50 flex-shrink-0" />
                 <div className="flex flex-wrap gap-2">
                   {cat.skills.map((skill) => (
                     <span key={skill} className={`skill-badge ${cfg.badge}`}>

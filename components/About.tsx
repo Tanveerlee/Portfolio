@@ -39,7 +39,7 @@ const colorMap: Record<string, string> = {
 
 export default function About() {
   return (
-    <section id="about" className="py-20 bg-[var(--section-bg-1)] relative">
+    <section id="about" className="py-16 bg-[var(--section-bg-1)] relative">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
@@ -82,11 +82,15 @@ export default function About() {
                 viewport={{ once: true }}
                 whileHover={{ y: -4, scale: 1.02 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className={`p-6 rounded-2xl border bg-gradient-to-br ${colorMap[h.color]} glass-card cursor-default`}
+                className={`p-5 rounded-2xl border bg-gradient-to-br ${colorMap[h.color]} glass-card cursor-default`}
               >
-                <div aria-hidden="true" className={`mb-3 ${colorMap[h.color].split(" ").pop()}`}>{h.icon}</div>
-                <h3 className="text-white font-semibold mb-2 text-base">{h.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{h.desc}</p>
+                <div className="flex items-start gap-3">
+                  <div aria-hidden="true" className={`mt-0.5 flex-shrink-0 ${colorMap[h.color].split(" ").pop()}`}>{h.icon}</div>
+                  <div>
+                    <h3 className="text-white font-semibold mb-1.5 text-sm">{h.title}</h3>
+                    <p className="text-slate-400 text-sm leading-relaxed">{h.desc}</p>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>

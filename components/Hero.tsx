@@ -83,9 +83,6 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <p className="text-slate-400 font-mono text-sm tracking-widest uppercase mb-3">
-                Based in Lahore, Pakistan
-              </p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none whitespace-nowrap">
                 <span className="gradient-text">Tanveer </span>
                 <span className="hero-surname">Hussain</span>
@@ -273,7 +270,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {stats.map((s, i) => {
             const match = s.value.match(/^(\d+)(.*)$/);
@@ -296,11 +293,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-slate-600 text-xs font-mono">scroll</span>
-        <div className="w-px h-8 bg-gradient-to-b from-slate-600 to-transparent animate-pulse" />
-      </div>
     </section>
   );
 }

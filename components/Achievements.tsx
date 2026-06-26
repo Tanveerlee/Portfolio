@@ -95,7 +95,7 @@ const colorConfig: Record<string, { icon: string; metric: string; tag: string; b
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-20 bg-[var(--section-bg-2)] relative overflow-hidden">
+    <section id="achievements" className="py-16 bg-[var(--section-bg-2)] relative overflow-hidden">
       <div className="orb w-[400px] h-[400px] bottom-[-100px] left-[-100px] animate-float"
         style={{ background: "radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%)", position: "absolute", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }} />
 
@@ -104,7 +104,7 @@ export default function Achievements() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <p className="section-label">Impact & Results</p>
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
@@ -116,7 +116,7 @@ export default function Achievements() {
         </motion.div>
 
         {/* Metric cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {metrics.map((m, i) => {
             const cfg = colorConfig[m.color];
             return (

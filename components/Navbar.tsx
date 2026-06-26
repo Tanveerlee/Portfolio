@@ -56,7 +56,7 @@ export default function Navbar() {
             TH
           </div>
           <span className="font-semibold text-white hidden sm:block text-sm tracking-wide">
-            Tanveer<span className="text-cyan-400">.</span>
+            Tanveer
           </span>
         </a>
 
