@@ -256,6 +256,16 @@ body {
     transform: translateY(-1px);
   }
 
+  /* ── Skills marquee — continuous scroll via CSS var set by JS ── */
+  @keyframes skillsMarquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(var(--marquee-dist, -2480px)); }
+  }
+  .skills-track {
+    animation: skillsMarquee 30s linear infinite;
+    will-change: transform;
+  }
+
   /* ── Card shimmer — diagonal light sweep on group hover ── */
   .card-shimmer {
     position: absolute;

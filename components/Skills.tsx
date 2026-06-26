@@ -4,232 +4,70 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 const categories = [
-  {
-    title: "Automation Testing",
-    emoji: "🤖",
-    color: "cyan",
-    skills: ["Playwright (POM)", "Cypress", "Katalon Studio"],
-  },
-  {
-    title: "API Testing",
-    emoji: "🔌",
-    color: "violet",
-    skills: ["Postman", "Bruno", "Swagger", "REST APIs"],
-  },
-  {
-    title: "Performance Testing",
-    emoji: "⚡",
-    color: "amber",
-    skills: ["Apache JMeter", "Load Testing", "Stress Testing"],
-  },
-  {
-    title: "Security Testing",
-    emoji: "🛡️",
-    color: "red",
-    skills: ["Burp Suite", "OWASP Top 10", "Vulnerability Scanning"],
-  },
-  {
-    title: "Database Testing",
-    emoji: "🗃️",
-    color: "emerald",
-    skills: ["MySQL", "SQL Queries", "Data Validation"],
-  },
-  {
-    title: "Test Management",
-    emoji: "📋",
-    color: "indigo",
-    skills: ["JIRA", "TestRail", "Linear", "Asana", "Trello"],
-  },
-  {
-    title: "DevOps & CI/CD",
-    emoji: "🔧",
-    color: "slate",
-    skills: ["Git", "GitHub", "CI/CD", "Virtual Machines"],
-  },
-  {
-    title: "Methodologies",
-    emoji: "🔄",
-    color: "teal",
-    skills: ["Agile / Scrum", "STLC", "SDLC", "Sprint Planning", "Cross-browser"],
-  },
+  { title: "Automation Testing", emoji: "🤖", color: "cyan",    skills: ["Playwright (POM)", "Cypress", "Katalon Studio"] },
+  { title: "API Testing",         emoji: "🔌", color: "violet",  skills: ["Postman", "Bruno", "Swagger", "REST APIs"] },
+  { title: "Performance Testing", emoji: "⚡", color: "amber",   skills: ["Apache JMeter", "Load Testing", "Stress Testing"] },
+  { title: "Security Testing",    emoji: "🛡️", color: "red",     skills: ["Burp Suite", "OWASP Top 10", "Vulnerability Scanning"] },
+  { title: "Database Testing",    emoji: "🗃️", color: "emerald", skills: ["MySQL", "SQL Queries", "Data Validation"] },
+  { title: "Test Management",     emoji: "📋", color: "indigo",  skills: ["JIRA", "TestRail", "Linear", "Asana", "Trello"] },
+  { title: "DevOps & CI/CD",      emoji: "🔧", color: "slate",   skills: ["Git", "GitHub", "CI/CD", "Virtual Machines"] },
+  { title: "Methodologies",       emoji: "🔄", color: "teal",    skills: ["Agile / Scrum", "STLC", "SDLC", "Sprint Planning", "Cross-browser"] },
 ];
 
 const colorConfig: Record<string, {
   card: string; badge: string; accent: string; iconBg: string;
   glow: string; divider: string; meta: string; hoverBorder: string;
 }> = {
-  cyan: {
-    card: "border-cyan-500/20 bg-gradient-to-br from-cyan-950/50 via-slate-900/60 to-slate-900/80",
-    badge: "bg-cyan-500/15 text-cyan-300 border border-cyan-500/25 hover:bg-cyan-500/30 hover:text-cyan-100",
-    accent: "from-cyan-300 via-cyan-400 to-cyan-600",
-    iconBg: "bg-cyan-500/20 border border-cyan-500/35",
-    glow: "from-cyan-500/8 via-transparent to-transparent",
-    divider: "from-transparent via-cyan-500/35 to-transparent",
-    meta: "text-cyan-400/65",
-    hoverBorder: "group-hover:border-cyan-500/50",
-  },
-  violet: {
-    card: "border-violet-500/20 bg-gradient-to-br from-violet-950/50 via-slate-900/60 to-slate-900/80",
-    badge: "bg-violet-500/15 text-violet-300 border border-violet-500/25 hover:bg-violet-500/30 hover:text-violet-100",
-    accent: "from-violet-300 via-violet-400 to-violet-600",
-    iconBg: "bg-violet-500/20 border border-violet-500/35",
-    glow: "from-violet-500/8 via-transparent to-transparent",
-    divider: "from-transparent via-violet-500/35 to-transparent",
-    meta: "text-violet-400/65",
-    hoverBorder: "group-hover:border-violet-500/50",
-  },
-  amber: {
-    card: "border-amber-500/20 bg-gradient-to-br from-amber-950/50 via-slate-900/60 to-slate-900/80",
-    badge: "bg-amber-500/15 text-amber-300 border border-amber-500/25 hover:bg-amber-500/30 hover:text-amber-100",
-    accent: "from-amber-300 via-amber-400 to-orange-500",
-    iconBg: "bg-amber-500/20 border border-amber-500/35",
-    glow: "from-amber-500/8 via-transparent to-transparent",
-    divider: "from-transparent via-amber-500/35 to-transparent",
-    meta: "text-amber-400/65",
-    hoverBorder: "group-hover:border-amber-500/50",
-  },
-  red: {
-    card: "border-red-500/20 bg-gradient-to-br from-red-950/50 via-slate-900/60 to-slate-900/80",
-    badge: "bg-red-500/15 text-red-300 border border-red-500/25 hover:bg-red-500/30 hover:text-red-100",
-    accent: "from-red-300 via-red-400 to-red-600",
-    iconBg: "bg-red-500/20 border border-red-500/35",
-    glow: "from-red-500/8 via-transparent to-transparent",
-    divider: "from-transparent via-red-500/35 to-transparent",
-    meta: "text-red-400/65",
-    hoverBorder: "group-hover:border-red-500/50",
-  },
-  emerald: {
-    card: "border-emerald-500/20 bg-gradient-to-br from-emerald-950/50 via-slate-900/60 to-slate-900/80",
-    badge: "bg-emerald-500/15 text-emerald-300 border border-emerald-500/25 hover:bg-emerald-500/30 hover:text-emerald-100",
-    accent: "from-emerald-300 via-emerald-400 to-emerald-600",
-    iconBg: "bg-emerald-500/20 border border-emerald-500/35",
-    glow: "from-emerald-500/8 via-transparent to-transparent",
-    divider: "from-transparent via-emerald-500/35 to-transparent",
-    meta: "text-emerald-400/65",
-    hoverBorder: "group-hover:border-emerald-500/50",
-  },
-  indigo: {
-    card: "border-indigo-500/20 bg-gradient-to-br from-indigo-950/50 via-slate-900/60 to-slate-900/80",
-    badge: "bg-indigo-500/15 text-indigo-300 border border-indigo-500/25 hover:bg-indigo-500/30 hover:text-indigo-100",
-    accent: "from-indigo-300 via-indigo-400 to-indigo-600",
-    iconBg: "bg-indigo-500/20 border border-indigo-500/35",
-    glow: "from-indigo-500/8 via-transparent to-transparent",
-    divider: "from-transparent via-indigo-500/35 to-transparent",
-    meta: "text-indigo-400/65",
-    hoverBorder: "group-hover:border-indigo-500/50",
-  },
-  slate: {
-    card: "border-slate-500/25 bg-gradient-to-br from-slate-800/60 via-slate-900/60 to-slate-900/80",
-    badge: "bg-slate-500/15 text-slate-300 border border-slate-500/25 hover:bg-slate-500/30 hover:text-slate-100",
-    accent: "from-slate-300 via-slate-400 to-slate-500",
-    iconBg: "bg-slate-500/20 border border-slate-500/35",
-    glow: "from-slate-500/8 via-transparent to-transparent",
-    divider: "from-transparent via-slate-500/35 to-transparent",
-    meta: "text-slate-400/65",
-    hoverBorder: "group-hover:border-slate-400/50",
-  },
-  teal: {
-    card: "border-teal-500/20 bg-gradient-to-br from-teal-950/50 via-slate-900/60 to-slate-900/80",
-    badge: "bg-teal-500/15 text-teal-300 border border-teal-500/25 hover:bg-teal-500/30 hover:text-teal-100",
-    accent: "from-teal-300 via-teal-400 to-teal-600",
-    iconBg: "bg-teal-500/20 border border-teal-500/35",
-    glow: "from-teal-500/8 via-transparent to-transparent",
-    divider: "from-transparent via-teal-500/35 to-transparent",
-    meta: "text-teal-400/65",
-    hoverBorder: "group-hover:border-teal-500/50",
-  },
+  cyan:    { card: "border-cyan-500/20 bg-gradient-to-br from-cyan-950/50 via-slate-900/60 to-slate-900/80",       badge: "bg-cyan-500/15 text-cyan-300 border border-cyan-500/25 hover:bg-cyan-500/30",       accent: "from-cyan-300 via-cyan-400 to-cyan-600",       iconBg: "bg-cyan-500/20 border border-cyan-500/35",    glow: "from-cyan-500/8 via-transparent to-transparent",    divider: "from-transparent via-cyan-500/35 to-transparent",    meta: "text-cyan-400/65",   hoverBorder: "group-hover:border-cyan-500/50" },
+  violet:  { card: "border-violet-500/20 bg-gradient-to-br from-violet-950/50 via-slate-900/60 to-slate-900/80",   badge: "bg-violet-500/15 text-violet-300 border border-violet-500/25 hover:bg-violet-500/30", accent: "from-violet-300 via-violet-400 to-violet-600", iconBg: "bg-violet-500/20 border border-violet-500/35", glow: "from-violet-500/8 via-transparent to-transparent", divider: "from-transparent via-violet-500/35 to-transparent", meta: "text-violet-400/65", hoverBorder: "group-hover:border-violet-500/50" },
+  amber:   { card: "border-amber-500/20 bg-gradient-to-br from-amber-950/50 via-slate-900/60 to-slate-900/80",     badge: "bg-amber-500/15 text-amber-300 border border-amber-500/25 hover:bg-amber-500/30",    accent: "from-amber-300 via-amber-400 to-orange-500",   iconBg: "bg-amber-500/20 border border-amber-500/35",  glow: "from-amber-500/8 via-transparent to-transparent",  divider: "from-transparent via-amber-500/35 to-transparent",  meta: "text-amber-400/65",  hoverBorder: "group-hover:border-amber-500/50" },
+  red:     { card: "border-red-500/20 bg-gradient-to-br from-red-950/50 via-slate-900/60 to-slate-900/80",         badge: "bg-red-500/15 text-red-300 border border-red-500/25 hover:bg-red-500/30",            accent: "from-red-300 via-red-400 to-red-600",          iconBg: "bg-red-500/20 border border-red-500/35",      glow: "from-red-500/8 via-transparent to-transparent",    divider: "from-transparent via-red-500/35 to-transparent",    meta: "text-red-400/65",    hoverBorder: "group-hover:border-red-500/50" },
+  emerald: { card: "border-emerald-500/20 bg-gradient-to-br from-emerald-950/50 via-slate-900/60 to-slate-900/80", badge: "bg-emerald-500/15 text-emerald-300 border border-emerald-500/25 hover:bg-emerald-500/30", accent: "from-emerald-300 via-emerald-400 to-emerald-600", iconBg: "bg-emerald-500/20 border border-emerald-500/35", glow: "from-emerald-500/8 via-transparent to-transparent", divider: "from-transparent via-emerald-500/35 to-transparent", meta: "text-emerald-400/65", hoverBorder: "group-hover:border-emerald-500/50" },
+  indigo:  { card: "border-indigo-500/20 bg-gradient-to-br from-indigo-950/50 via-slate-900/60 to-slate-900/80",   badge: "bg-indigo-500/15 text-indigo-300 border border-indigo-500/25 hover:bg-indigo-500/30",  accent: "from-indigo-300 via-indigo-400 to-indigo-600", iconBg: "bg-indigo-500/20 border border-indigo-500/35", glow: "from-indigo-500/8 via-transparent to-transparent", divider: "from-transparent via-indigo-500/35 to-transparent", meta: "text-indigo-400/65", hoverBorder: "group-hover:border-indigo-500/50" },
+  slate:   { card: "border-slate-500/25 bg-gradient-to-br from-slate-800/60 via-slate-900/60 to-slate-900/80",     badge: "bg-slate-500/15 text-slate-300 border border-slate-500/25 hover:bg-slate-500/30",    accent: "from-slate-300 via-slate-400 to-slate-500",    iconBg: "bg-slate-500/20 border border-slate-500/35",  glow: "from-slate-500/8 via-transparent to-transparent",  divider: "from-transparent via-slate-500/35 to-transparent",  meta: "text-slate-400/65",  hoverBorder: "group-hover:border-slate-400/50" },
+  teal:    { card: "border-teal-500/20 bg-gradient-to-br from-teal-950/50 via-slate-900/60 to-slate-900/80",       badge: "bg-teal-500/15 text-teal-300 border border-teal-500/25 hover:bg-teal-500/30",       accent: "from-teal-300 via-teal-400 to-teal-600",       iconBg: "bg-teal-500/20 border border-teal-500/35",    glow: "from-teal-500/8 via-transparent to-transparent",    divider: "from-transparent via-teal-500/35 to-transparent",    meta: "text-teal-400/65",   hoverBorder: "group-hover:border-teal-500/50" },
 };
 
-const GAP = 20; // px — matches the inline gap
-const DUPED = [...categories, ...categories]; // duplicate for seamless loop reset
+const GAP = 20; // px between cards
 
 export default function Skills() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const pausedRef = useRef(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const trackRef   = useRef<HTMLDivElement>(null);
+  const [cardW, setCardW]     = useState(261);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const [cardW, setCardW] = useState(261);
-  const [offset, setOffset] = useState(0);
-  const [animated, setAnimated] = useState(true);
-
-  // Measure card width from container so it's always responsive
+  // Measure card width so all cards exactly fill the visible window
   const measureCard = useCallback(() => {
-    if (!trackRef.current) return;
-    const containerW = trackRef.current.offsetWidth;
+    if (!wrapperRef.current) return;
+    const containerW = wrapperRef.current.offsetWidth;
     const vw = window.innerWidth;
     const visible = vw >= 1024 ? 4 : vw >= 640 ? 2 : 1;
-    setCardW(Math.floor((containerW - GAP * (visible - 1)) / visible));
+    const newW = Math.floor((containerW - GAP * (visible - 1)) / visible);
+    setCardW(newW);
   }, []);
 
   useEffect(() => {
     measureCard();
-    window.addEventListener("resize", measureCard);
-    return () => window.removeEventListener("resize", measureCard);
+    const ro = new ResizeObserver(measureCard);
+    if (wrapperRef.current) ro.observe(wrapperRef.current);
+    return () => ro.disconnect();
   }, [measureCard]);
 
-  const advance = useCallback(() => {
-    if (pausedRef.current) return;
-    setOffset((prev) => prev + 1);
-  }, []);
-
-  // Start the auto-advance timer
-  const startTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(advance, 2500);
-  }, [advance]);
-
+  // Update the CSS variable that drives the @keyframes translation distance
   useEffect(() => {
-    startTimer();
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [startTimer]);
+    if (!trackRef.current) return;
+    const dist = (cardW + GAP) * categories.length;
+    trackRef.current.style.setProperty("--marquee-dist", `-${dist}px`);
+  }, [cardW]);
 
-  // When offset reaches end of original cards, wait for transition then snap back
-  useEffect(() => {
-    if (offset >= categories.length) {
-      const timeout = setTimeout(() => {
-        setAnimated(false);
-        setOffset(0);
-      }, 750);
-      return () => clearTimeout(timeout);
-    }
-  }, [offset]);
-
-  // Re-enable transition after the instant snap (two rAF frames to ensure DOM flush)
-  useEffect(() => {
-    if (!animated) {
-      const id = requestAnimationFrame(() =>
-        requestAnimationFrame(() => setAnimated(true))
-      );
-      return () => cancelAnimationFrame(id);
-    }
-  }, [animated]);
-
-  const step = cardW + GAP;
-  const activeIdx = offset % categories.length;
-
-  const handleMouseEnter = () => {
-    pausedRef.current = true;
-    if (timerRef.current) clearInterval(timerRef.current);
-  };
-
-  const handleMouseLeave = () => {
-    pausedRef.current = false;
-    startTimer();
-  };
+  // Duplicate cards so the loop reset is invisible (position 0 = position N)
+  const cards = [...categories, ...categories];
 
   return (
     <section id="skills" className="py-20 bg-[var(--section-bg-2)] relative overflow-hidden">
       <div
         className="orb w-[500px] h-[500px] top-[-100px] right-[-200px] animate-float-slow"
-        style={{
-          background: "radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%)",
-          position: "absolute",
-          borderRadius: "50%",
-          filter: "blur(80px)",
-          pointerEvents: "none",
-        }}
+        style={{ background: "radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%)", position: "absolute", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }}
       />
 
       <div className="max-w-6xl mx-auto px-6">
@@ -250,23 +88,38 @@ export default function Skills() {
             to performance and security testing.
           </p>
         </motion.div>
+      </div>
 
-        {/* Carousel track */}
+      {/* Full-width carousel with edge fades */}
+      <div className="relative">
+        {/* Left edge fade */}
         <div
-          ref={trackRef}
-          className="overflow-hidden"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to right, var(--section-bg-2), transparent)" }}
+        />
+        {/* Right edge fade */}
+        <div
+          className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to left, var(--section-bg-2), transparent)" }}
+        />
+
+        {/* Overflow clip */}
+        <div
+          ref={wrapperRef}
+          className="max-w-6xl mx-auto px-6 overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
+          {/* Scrolling track — driven by CSS @keyframes */}
           <div
+            ref={trackRef}
+            className="skills-track flex"
             style={{
-              display: "flex",
               gap: GAP,
-              transform: `translateX(-${offset * step}px)`,
-              transition: animated ? "transform 0.75s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
+              animationPlayState: isPaused ? "paused" : "running",
             }}
           >
-            {DUPED.map((cat, i) => {
+            {cards.map((cat, i) => {
               const cfg = colorConfig[cat.color];
               return (
                 <motion.div
@@ -282,15 +135,11 @@ export default function Skills() {
                   <div className="card-shimmer" />
 
                   {/* Inner glow on hover */}
-                  <div
-                    className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl bg-gradient-to-br ${cfg.glow} pointer-events-none`}
-                  />
+                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl bg-gradient-to-br ${cfg.glow} pointer-events-none`} />
 
                   {/* Icon box + title */}
                   <div className="flex items-center gap-3 pt-1 relative z-10">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 ${cfg.iconBg} group-hover:scale-110 transition-transform duration-200`}
-                    >
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 ${cfg.iconBg} group-hover:scale-110 transition-transform duration-200`}>
                       {cat.emoji}
                     </div>
                     <div>
@@ -299,7 +148,7 @@ export default function Skills() {
                     </div>
                   </div>
 
-                  {/* Gradient divider */}
+                  {/* Color-matched gradient divider */}
                   <div className={`h-px bg-gradient-to-r ${cfg.divider} relative z-10`} />
 
                   {/* Skill badges */}
@@ -315,26 +164,12 @@ export default function Skills() {
             })}
           </div>
         </div>
-
-        {/* Dot navigation */}
-        <div className="flex justify-center items-center gap-2 mt-8">
-          {categories.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                setAnimated(true);
-                setOffset(i);
-              }}
-              aria-label={`Go to slide ${i + 1}`}
-              className={`rounded-full transition-all duration-300 ${
-                activeIdx === i
-                  ? "w-6 h-1.5 bg-cyan-400"
-                  : "w-1.5 h-1.5 bg-slate-600 hover:bg-slate-400"
-              }`}
-            />
-          ))}
-        </div>
       </div>
+
+      {/* Pause hint */}
+      <p className="text-center text-slate-600 text-xs mt-6 tracking-wide">
+        Hover to pause
+      </p>
     </section>
   );
 }
