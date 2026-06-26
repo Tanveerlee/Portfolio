@@ -245,11 +245,6 @@ export default function Contact() {
                     <><Send size={16} aria-hidden="true" />Send Message</>
                   )}
                 </button>
-                {!WEB3FORMS_KEY && (
-                  <p className="text-amber-400 text-xs text-center mt-2">
-                    ⚠ Add <code className="font-mono">NEXT_PUBLIC_WEB3FORMS_KEY</code> in Vercel env vars to enable direct sending.
-                  </p>
-                )}
               </form>
             </div>
           </motion.div>
