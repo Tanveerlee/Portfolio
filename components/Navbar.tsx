@@ -49,10 +49,10 @@ export default function Navbar() {
         scrolled ? scrolledBg : "bg-transparent"
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
         {/* Logo */}
-        <a href="#hero" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center font-bold text-sm text-white shadow-lg group-hover:shadow-cyan-500/30 transition-shadow">
+        <a href="#hero" aria-label="Tanveer Hussain – back to top" className="flex items-center gap-2 group">
+          <div aria-hidden="true" className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center font-bold text-sm text-white shadow-lg group-hover:shadow-cyan-500/30 transition-shadow">
             TH
           </div>
           <span className="font-semibold text-white hidden sm:block text-sm tracking-wide">
@@ -61,11 +61,13 @@ export default function Navbar() {
         </a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8" role="list">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
+              role="listitem"
+              aria-current={active === l.href.slice(1) ? "true" : undefined}
               className={`nav-link ${active === l.href.slice(1) ? "active" : ""}`}
             >
               {l.label}
@@ -84,7 +86,7 @@ export default function Navbar() {
                 : "border-slate-300 bg-white/70 text-slate-500 hover:text-cyan-600 hover:border-cyan-400"
             }`}
           >
-            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            {theme === "dark" ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
           </button>
 
           <a
@@ -96,16 +98,18 @@ export default function Navbar() {
           <button
             className="md:hidden text-slate-400 hover:text-white transition-colors p-1"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
           </button>
         </div>
       </nav>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0f172a]/95 backdrop-blur-xl border-b border-white/5 px-6 py-4">
+        <div id="mobile-menu" className="md:hidden bg-[#0f172a]/95 backdrop-blur-xl border-b border-white/5 px-6 py-4" role="navigation" aria-label="Mobile navigation">
           <div className="flex flex-col gap-1">
             {links.map((l) => (
               <a

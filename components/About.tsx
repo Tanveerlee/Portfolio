@@ -99,7 +99,7 @@ export default function About() {
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 className={`p-5 rounded-2xl border bg-gradient-to-br ${colorMap[h.color]} glass-card cursor-default`}
               >
-                <div className={`mb-3 ${colorMap[h.color].split(" ").pop()}`}>{h.icon}</div>
+                <div aria-hidden="true" className={`mb-3 ${colorMap[h.color].split(" ").pop()}`}>{h.icon}</div>
                 <h3 className="text-white font-semibold mb-2 text-sm">{h.title}</h3>
                 <p className="text-slate-400 text-xs leading-relaxed">{h.desc}</p>
               </motion.div>

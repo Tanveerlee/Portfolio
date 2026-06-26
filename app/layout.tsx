@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { MotionConfig } from "framer-motion";
 
 export const metadata: Metadata = {
   title: "Tanveer Hussain | Senior QA Automation Engineer",
@@ -34,7 +35,9 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="bg-[var(--section-bg-1)] text-white antialiased min-h-screen" suppressHydrationWarning>
         <ThemeProvider>
-          {children}
+          <MotionConfig reducedMotion="user">
+            {children}
+          </MotionConfig>
         </ThemeProvider>
       </body>
     </html>

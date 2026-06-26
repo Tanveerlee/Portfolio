@@ -99,8 +99,8 @@ export default function Experience() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="relative"
                 >
-                  {/* Timeline dot */}
-                  <div className={`absolute -left-[26px] w-4 h-4 rounded-full shadow-lg ${cfg.dot} border-2 border-[#030712] top-6`}>
+                  {/* Timeline dot (decorative) */}
+                  <div aria-hidden="true" className={`absolute -left-[26px] w-4 h-4 rounded-full shadow-lg ${cfg.dot} border-2 border-[#030712] top-6`}>
                     <div className={`absolute inset-0 rounded-full ${cfg.dot} animate-ping opacity-30`} />
                   </div>
 
@@ -115,17 +115,17 @@ export default function Experience() {
                         </div>
                         <h3 className="text-xl font-bold text-white">{job.role}</h3>
                         <div className="flex items-center gap-2 mt-1">
-                          <Briefcase size={14} className="text-slate-500" />
+                          <Briefcase size={14} aria-hidden="true" className="text-slate-500" />
                           <span className="text-cyan-400 font-semibold text-sm">{job.company}</span>
                         </div>
                       </div>
                       <div className="flex flex-col gap-1.5 text-right sm:text-right">
                         <div className="flex items-center gap-2 text-slate-400 text-xs sm:justify-end">
-                          <Calendar size={12} />
+                          <Calendar size={12} aria-hidden="true" />
                           <span>{job.period}</span>
                         </div>
                         <div className="flex items-center gap-2 text-slate-400 text-xs sm:justify-end">
-                          <MapPin size={12} />
+                          <MapPin size={12} aria-hidden="true" />
                           <span>{job.location}</span>
                         </div>
                         <span className={`text-xs font-medium px-2 py-0.5 rounded ${cfg.badge} border self-start sm:self-end`}>
@@ -135,10 +135,10 @@ export default function Experience() {
                     </div>
 
                     {/* Bullet points */}
-                    <ul className="space-y-2.5 mb-5">
+                    <ul className="space-y-2.5 mb-5" aria-label={`Responsibilities at ${job.company}`}>
                       {job.points.map((p) => (
                         <li key={p} className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
-                          <CheckCircle2 size={14} className="text-emerald-400 flex-shrink-0 mt-0.5" />
+                          <CheckCircle2 size={14} aria-hidden="true" className="text-emerald-400 flex-shrink-0 mt-0.5" />
                           <span>{p}</span>
                         </li>
                       ))}

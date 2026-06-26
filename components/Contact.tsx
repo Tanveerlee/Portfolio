@@ -113,7 +113,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-3 rounded-xl bg-slate-800/40 hover:bg-slate-800/70 border border-slate-700/40 hover:border-slate-600/60 transition-all group"
                   >
-                    <div className={`w-9 h-9 rounded-lg border flex items-center justify-center flex-shrink-0 ${colorMap[c.color]}`}>
+                    <div aria-hidden="true" className={`w-9 h-9 rounded-lg border flex items-center justify-center flex-shrink-0 ${colorMap[c.color]}`}>
                       {c.icon}
                     </div>
                     <div className="min-w-0">
@@ -153,59 +153,68 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
           >
             <div className="glass-card p-7">
-              <h3 className="text-white font-bold text-lg mb-5">Send a message</h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <h3 className="text-white font-bold text-lg mb-5" id="contact-form-heading">Send a message</h3>
+              <form onSubmit={handleSubmit} className="space-y-4" aria-labelledby="contact-form-heading" noValidate>
                 <div>
-                  <label className="block text-slate-400 text-xs font-medium mb-2 uppercase tracking-wide">
-                    Your Name
+                  <label htmlFor="contact-name" className="block text-slate-400 text-xs font-medium mb-2 uppercase tracking-wide">
+                    Your Name <span aria-hidden="true" className="text-cyan-400">*</span>
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     required
+                    aria-required="true"
+                    autoComplete="name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder="John Smith"
-                    className="w-full bg-slate-800/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:bg-slate-800/80 transition-all"
+                    className="w-full bg-slate-800/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 focus:bg-slate-800/80 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 text-xs font-medium mb-2 uppercase tracking-wide">
-                    Email Address
+                  <label htmlFor="contact-email" className="block text-slate-400 text-xs font-medium mb-2 uppercase tracking-wide">
+                    Email Address <span aria-hidden="true" className="text-cyan-400">*</span>
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     required
+                    aria-required="true"
+                    autoComplete="email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder="you@company.com"
-                    className="w-full bg-slate-800/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:bg-slate-800/80 transition-all"
+                    className="w-full bg-slate-800/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 focus:bg-slate-800/80 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 text-xs font-medium mb-2 uppercase tracking-wide">
-                    Message
+                  <label htmlFor="contact-message" className="block text-slate-400 text-xs font-medium mb-2 uppercase tracking-wide">
+                    Message <span aria-hidden="true" className="text-cyan-400">*</span>
                   </label>
                   <textarea
+                    id="contact-message"
                     required
+                    aria-required="true"
                     rows={5}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     placeholder="Tell me about the role or project..."
-                    className="w-full bg-slate-800/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:bg-slate-800/80 transition-all resize-none"
+                    className="w-full bg-slate-800/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 focus:bg-slate-800/80 transition-all resize-none"
                   />
                 </div>
                 <button
                   type="submit"
                   className="btn-primary w-full justify-center"
+                  aria-live="polite"
                 >
                   {sent ? (
                     <>
-                      <CheckCircle size={16} />
+                      <CheckCircle size={16} aria-hidden="true" />
                       Email Client Opened
                     </>
                   ) : (
                     <>
-                      <Send size={16} />
+                      <Send size={16} aria-hidden="true" />
                       Send Message
                     </>
                   )}

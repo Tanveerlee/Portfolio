@@ -31,29 +31,30 @@ export default function Footer() {
           </div>
 
           {/* Socials */}
-          <div className="flex items-center gap-3">
+          <nav aria-label="Social links" className="flex items-center gap-3">
             {[
-              { icon: <LinkedInIcon size={16} />, href: "https://linkedin.com/in/tanveer-hussain-sqa" },
-              { icon: <GitHubIcon size={16} />, href: "https://github.com/Tanveerlee" },
-              { icon: <Mail size={16} />, href: "mailto:tanveerashraf02@gmail.com" },
-            ].map(({ icon, href }) => (
+              { icon: <LinkedInIcon size={16} aria-hidden="true" />, href: "https://linkedin.com/in/tanveer-hussain-sqa", label: "LinkedIn profile" },
+              { icon: <GitHubIcon size={16} aria-hidden="true" />, href: "https://github.com/Tanveerlee", label: "GitHub profile" },
+              { icon: <Mail size={16} aria-hidden="true" />, href: "mailto:tanveerashraf02@gmail.com", label: "Send email" },
+            ].map(({ icon, href, label }) => (
               <a
                 key={href}
                 href={href}
                 target={href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
+                aria-label={label}
                 className="w-8 h-8 rounded-lg bg-slate-800/60 border border-slate-700/40 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-all"
               >
                 {icon}
               </a>
             ))}
-          </div>
+          </nav>
         </div>
 
         <div className="border-t border-white/5 mt-8 pt-8 text-center">
           <p className="text-slate-600 text-xs flex items-center justify-center gap-1.5">
             © {new Date().getFullYear()} Tanveer Hussain. Crafted with{" "}
-            <Heart size={11} className="text-red-500 fill-red-500" />{" "}
+            <Heart size={11} aria-hidden="true" className="text-red-500 fill-red-500" />{" "}
             and Next.js
           </p>
         </div>

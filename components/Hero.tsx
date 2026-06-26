@@ -99,6 +99,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="h-8 overflow-hidden"
+              aria-live="polite"
+              aria-atomic="true"
             >
               <motion.p
                 key={roleIdx}
@@ -132,14 +134,15 @@ export default function Hero() {
             >
               <a href="#contact" className="btn-primary">
                 Let&apos;s Talk
-                <ArrowRight size={16} />
+                <ArrowRight size={16} aria-hidden="true" />
               </a>
               <a
                 href="/Tanveer_Hussain_QA_Automation_Engineer.pdf"
                 download
+                aria-label="Download CV (PDF)"
                 className="btn-secondary"
               >
-                <Download size={16} />
+                <Download size={16} aria-hidden="true" />
                 Download CV
               </a>
             </motion.div>
@@ -152,9 +155,9 @@ export default function Hero() {
               className="flex items-center gap-5 pt-2"
             >
               {[
-                { icon: <LinkedInIcon />, href: "https://linkedin.com/in/tanveer-hussain-sqa", label: "LinkedIn" },
-                { icon: <GitHubIcon />, href: "https://github.com/Tanveerlee", label: "GitHub" },
-                { icon: <Mail size={18} />, href: "mailto:tanveerashraf02@gmail.com", label: "Email" },
+                { icon: <LinkedInIcon aria-hidden="true" />, href: "https://linkedin.com/in/tanveer-hussain-sqa", label: "LinkedIn profile (opens in new tab)" },
+                { icon: <GitHubIcon aria-hidden="true" />, href: "https://github.com/Tanveerlee", label: "GitHub profile (opens in new tab)" },
+                { icon: <Mail size={18} aria-hidden="true" />, href: "mailto:tanveerashraf02@gmail.com", label: "Send email" },
               ].map((s) => (
                 <a
                   key={s.label}
@@ -178,6 +181,8 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="hidden lg:block"
+            role="img"
+            aria-label="Playwright test suite demonstration showing 5 passed tests with 94% coverage"
           >
             <div className="gradient-border-card p-0 overflow-hidden shadow-2xl shadow-black/50">
               {/* Terminal header */}

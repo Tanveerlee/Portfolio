@@ -30,7 +30,7 @@ export default function Education() {
             className="gradient-border-card p-7"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-500/20 flex items-center justify-center">
+              <div aria-hidden="true" className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-500/20 flex items-center justify-center">
                 <GraduationCap size={26} className="text-cyan-400" />
               </div>
               <div>
@@ -43,7 +43,7 @@ export default function Education() {
               <div>
                 <h4 className="text-white font-semibold text-lg mb-1">Computer Science</h4>
                 <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
-                  <Building2 size={13} />
+                  <Building2 size={13} aria-hidden="true" />
                   <span>University of Agriculture, Faisalabad</span>
                 </div>
               </div>
@@ -70,7 +70,7 @@ export default function Education() {
             className="gradient-border-card p-7"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-600/10 border border-violet-500/20 flex items-center justify-center">
+              <div aria-hidden="true" className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-600/10 border border-violet-500/20 flex items-center justify-center">
                 <Award size={26} className="text-violet-400" />
               </div>
               <div>
@@ -88,11 +88,11 @@ export default function Education() {
                   </span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
-                  <Building2 size={13} />
+                  <Building2 size={13} aria-hidden="true" />
                   <span>Huawei Technologies</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-500 text-xs">
-                  <CalendarDays size={12} />
+                  <CalendarDays size={12} aria-hidden="true" />
                   <span>Issued: 2023</span>
                 </div>
               </div>
