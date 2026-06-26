@@ -60,7 +60,7 @@ export default function Hero() {
       <div className="orb w-[300px] h-[300px] top-[40%] right-[30%] animate-float-delay"
         style={{ background: "radial-gradient(circle, rgba(52,211,153,0.08) 0%, transparent 70%)" }} />
 
-      <div className="max-w-6xl mx-auto px-6 py-20 w-full">
+      <div className="max-w-6xl mx-auto px-6 py-24 w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
           {/* Left: Text Content */}

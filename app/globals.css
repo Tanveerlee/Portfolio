@@ -242,7 +242,7 @@ body {
 
   /* ── Nav ── */
   .nav-link {
-    @apply text-sm font-medium text-slate-400 transition-colors duration-200 hover:text-white;
+    @apply text-base font-medium text-slate-400 transition-colors duration-200 hover:text-white;
   }
   .nav-link.active {
     @apply text-cyan-400;
