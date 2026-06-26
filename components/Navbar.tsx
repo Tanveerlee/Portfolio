@@ -38,15 +38,20 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  const baseBg =
+    theme === "light"
+      ? "bg-white/70 backdrop-blur-md border-b border-black/8"
+      : "bg-[#030712]/75 backdrop-blur-md border-b border-white/8";
+
   const scrolledBg =
     theme === "light"
-      ? "bg-white/90 backdrop-blur-xl border-b border-black/5 shadow-sm"
-      : "bg-[#030712]/90 backdrop-blur-xl border-b border-white/5 shadow-xl shadow-black/20";
+      ? "bg-white/95 backdrop-blur-xl border-b border-black/10 shadow-sm"
+      : "bg-[#030712]/95 backdrop-blur-xl border-b border-white/10 shadow-xl shadow-black/30";
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? scrolledBg : "bg-transparent"
+        scrolled ? scrolledBg : baseBg
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
