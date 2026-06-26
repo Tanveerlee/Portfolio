@@ -170,16 +170,22 @@ body {
 
 /* ── Hero background + grid ── */
 .hero-bg {
-  background-color: #030712;
+  /* Deep navy-indigo — visually distinct from the rest of the page */
+  background-color: #04091a;
 }
 .hero-bg.grid-bg {
   background-image:
-    linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px),
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(34,211,238,0.14) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 60% at 90% 90%, rgba(167,139,250,0.10) 0%, transparent 50%),
-    radial-gradient(ellipse 40% 40% at 10% 60%, rgba(52,211,153,0.06) 0%, transparent 50%);
-  background-size: 60px 60px, 60px 60px, 100% 100%, 100% 100%, 100% 100%;
+    /* Fine dot grid */
+    radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px),
+    /* Top-center cyan aurora */
+    radial-gradient(ellipse 90% 55% at 50% -5%, rgba(34,211,238,0.22) 0%, transparent 65%),
+    /* Bottom-right violet glow */
+    radial-gradient(ellipse 60% 70% at 95% 100%, rgba(139,92,246,0.18) 0%, transparent 55%),
+    /* Left emerald accent */
+    radial-gradient(ellipse 45% 50% at -5% 55%, rgba(52,211,153,0.10) 0%, transparent 55%),
+    /* Centre deep-blue base */
+    radial-gradient(ellipse 100% 100% at 50% 50%, #060e24 0%, #04091a 100%);
+  background-size: 28px 28px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
 }
 
 @layer components {
@@ -345,11 +351,14 @@ body {
 [data-theme="light"] .orb { opacity: 0.3; }
 
 /* ── Hero background in light mode ── */
+[data-theme="light"] .hero-bg {
+  background-color: #eef4ff;
+}
 [data-theme="light"] .hero-bg.grid-bg {
   background-image:
-    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px),
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(34,211,238,0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 60% at 90% 90%, rgba(167,139,250,0.08) 0%, transparent 50%);
-  background-size: 60px 60px, 60px 60px, 100% 100%, 100% 100%;
+    radial-gradient(circle, rgba(14,165,233,0.08) 1px, transparent 1px),
+    radial-gradient(ellipse 90% 55% at 50% -5%, rgba(34,211,238,0.16) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 70% at 95% 100%, rgba(139,92,246,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #f0f7ff 0%, #eef4ff 100%);
+  background-size: 28px 28px, 100% 100%, 100% 100%, 100% 100%;
 }
