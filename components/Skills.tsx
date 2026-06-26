@@ -120,24 +120,24 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <div className="space-y-2.5">
+        <div className="grid md:grid-cols-2 gap-3">
           {categories.map((cat, i) => {
             const cfg = colorConfig[cat.color];
             return (
               <motion.div
                 key={cat.title}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-                className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 px-5 py-4 rounded-xl border ${cfg.card} backdrop-blur-sm hover:bg-slate-800/20 transition-all duration-200`}
+                whileHover={{ y: -3 }}
+                transition={{ duration: 0.3, delay: i * 0.06 }}
+                className={`p-5 rounded-xl border ${cfg.card} backdrop-blur-sm transition-all duration-200`}
               >
-                <div className="flex items-center gap-3 sm:w-52 sm:flex-shrink-0">
-                  <span className="text-xl" aria-hidden="true">{cat.emoji}</span>
+                <div className="flex items-center gap-2.5 mb-3 pb-3 border-b border-slate-800/60">
+                  <span className="text-lg" aria-hidden="true">{cat.emoji}</span>
                   <h3 className="text-white font-semibold text-sm">{cat.title}</h3>
                 </div>
-                <div className="hidden sm:block w-px h-5 bg-slate-700/50 flex-shrink-0" />
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {cat.skills.map((skill) => (
                     <span key={skill} className={`skill-badge ${cfg.badge}`}>
                       {skill}
