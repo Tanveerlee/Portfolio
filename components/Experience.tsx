@@ -64,7 +64,7 @@ const colorConfig: Record<string, { ring: string; badge: string; dot: string; li
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-28 bg-[var(--section-bg-1)] relative">
+    <section id="experience" className="py-20 bg-[var(--section-bg-1)] relative">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

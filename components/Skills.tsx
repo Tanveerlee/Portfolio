@@ -98,7 +98,7 @@ const colorConfig: Record<string, { card: string; badge: string; dot: string }> 
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-28 bg-[var(--section-bg-2)] relative">
+    <section id="skills" className="py-20 bg-[var(--section-bg-2)] relative">
       <div className="orb w-[500px] h-[500px] top-[-100px] right-[-200px] animate-float-slow"
         style={{ background: "radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%)", position: "absolute", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }} />
 

@@ -64,7 +64,7 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
           {/* Left: Text Content */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -86,9 +86,8 @@ export default function Hero() {
               <p className="text-slate-400 font-mono text-sm tracking-widest uppercase mb-3">
                 Based in Lahore, Pakistan
               </p>
-              <h1 className="text-5xl sm:text-6xl font-black tracking-tight leading-none">
-                <span className="gradient-text">Tanveer</span>
-                <br />
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none whitespace-nowrap">
+                <span className="gradient-text">Tanveer </span>
                 <span className="hero-surname">Hussain</span>
               </h1>
             </motion.div>

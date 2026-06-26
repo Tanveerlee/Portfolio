@@ -88,7 +88,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 bg-[var(--section-bg-2)] relative overflow-hidden">
+    <section id="contact" className="py-20 bg-[var(--section-bg-2)] relative overflow-hidden">
       {/* bg orb */}
       <div className="orb w-[500px] h-[500px] top-[50%] right-[-200px] animate-float-slow"
         style={{ background: "radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%)", position: "absolute", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none", transform: "translateY(-50%)" }} />

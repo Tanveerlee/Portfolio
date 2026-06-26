@@ -39,7 +39,7 @@ const colorMap: Record<string, string> = {
 
 export default function About() {
   return (
-    <section id="about" className="py-28 bg-[var(--section-bg-1)] relative">
+    <section id="about" className="py-20 bg-[var(--section-bg-1)] relative">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 

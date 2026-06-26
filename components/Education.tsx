@@ -5,7 +5,7 @@ import { GraduationCap, Award, CalendarDays, Building2 } from "lucide-react";
 
 export default function Education() {
   return (
-    <section id="education" className="py-28 bg-[var(--section-bg-1)]">
+    <section id="education" className="py-20 bg-[var(--section-bg-1)]">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
