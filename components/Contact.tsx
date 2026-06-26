@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, ExternalLink } from "lucide-react";
 import { LinkedInIcon, GitHubIcon } from "@/components/icons";
@@ -11,6 +11,30 @@ const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "";
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const equalise = () => {
+      const l = leftRef.current;
+      const r = rightRef.current;
+      if (!l || !r) return;
+      // Reset to natural height first
+      l.style.height = "auto";
+      r.style.height = "auto";
+      // Read after reflow
+      requestAnimationFrame(() => {
+        if (!l || !r) return;
+        const h = Math.max(l.offsetHeight, r.offsetHeight);
+        l.style.height = `${h}px`;
+        r.style.height = `${h}px`;
+      });
+    };
+    // Run after paint so Framer Motion has rendered
+    requestAnimationFrame(equalise);
+    window.addEventListener("resize", equalise);
+    return () => window.removeEventListener("resize", equalise);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,22 +134,21 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-10">
+        <div className="flex flex-col lg:flex-row gap-10 lg:items-stretch">
           {/* Left: Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="space-y-6"
+            className="lg:w-1/2"
           >
-            <div className="gradient-border-card p-7">
+            <div ref={leftRef} className="gradient-border-card p-7 flex flex-col">
               <h3 className="text-white font-bold text-xl mb-2">
                 Available for hire
               </h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                I&apos;m actively looking for senior QA engineering roles where I can bring my
-                Playwright automation expertise and quality-first mindset to a great team.
+                I specialize in building scalable Playwright automation frameworks and ensuring every release meets the highest quality standards.
               </p>
 
               <div className="space-y-3 mb-6">
@@ -175,8 +198,9 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="lg:w-1/2"
           >
-            <div className="glass-card p-7">
+            <div ref={rightRef} className="glass-card p-7 flex flex-col">
               <h3 className="text-white font-bold text-lg mb-5" id="contact-form-heading">Send a message</h3>
               <form onSubmit={handleSubmit} className="space-y-4" aria-labelledby="contact-form-heading" noValidate>
                 <div>
