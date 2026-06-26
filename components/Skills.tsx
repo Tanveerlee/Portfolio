@@ -135,10 +135,7 @@ export default function Skills() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-2xl">{cat.emoji}</span>
-                  <div>
-                    <div className={`w-2 h-2 rounded-full ${cfg.dot} mb-1`} />
-                    <h3 className="text-white font-semibold text-sm leading-tight">{cat.title}</h3>
-                  </div>
+                  <h3 className="text-white font-semibold text-sm leading-tight">{cat.title}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {cat.skills.map((skill) => (
