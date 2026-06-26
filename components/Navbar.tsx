@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
 
 const links = [
   { label: "About", href: "#about" },
@@ -16,6 +17,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("");
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -36,12 +38,15 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  const scrolledBg =
+    theme === "light"
+      ? "bg-white/90 backdrop-blur-xl border-b border-black/5 shadow-sm"
+      : "bg-[#030712]/90 backdrop-blur-xl border-b border-white/5 shadow-xl shadow-black/20";
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#030712]/90 backdrop-blur-xl border-b border-white/5 shadow-xl shadow-black/20"
-          : "bg-transparent"
+        scrolled ? scrolledBg : "bg-transparent"
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -68,11 +73,23 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Hire Me CTA + mobile toggle */}
-        <div className="flex items-center gap-4">
+        {/* Theme toggle + Hire Me CTA + mobile toggle */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className={`w-9 h-9 rounded-lg flex items-center justify-center border transition-all duration-200 ${
+              theme === "dark"
+                ? "border-slate-700/50 bg-slate-800/50 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/40"
+                : "border-slate-300 bg-white/70 text-slate-500 hover:text-cyan-600 hover:border-cyan-400"
+            }`}
+          >
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+
           <a
             href="#contact"
-            className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-violet-500 text-white text-sm font-semibold transition-all hover:shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-px"
+            className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-violet-500 text-always-white text-sm font-semibold transition-all hover:shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-px"
           >
             Hire Me
           </a>
@@ -103,7 +120,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setMenuOpen(false)}
-              className="mt-2 text-center py-3 px-4 rounded-lg bg-gradient-to-r from-cyan-500 to-violet-500 text-white text-sm font-semibold"
+              className="mt-2 text-center py-3 px-4 rounded-lg bg-gradient-to-r from-cyan-500 to-violet-500 text-always-white text-sm font-semibold"
             >
               Hire Me
             </a>

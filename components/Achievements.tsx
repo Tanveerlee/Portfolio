@@ -95,7 +95,7 @@ const colorConfig: Record<string, { icon: string; metric: string; tag: string; b
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-28 bg-[#060b18] relative overflow-hidden">
+    <section id="achievements" className="py-28 bg-[var(--section-bg-2)] relative overflow-hidden">
       <div className="orb w-[400px] h-[400px] bottom-[-100px] left-[-100px] animate-float"
         style={{ background: "radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%)", position: "absolute", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }} />
 

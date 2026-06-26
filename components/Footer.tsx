@@ -3,7 +3,7 @@ import { LinkedInIcon, GitHubIcon } from "@/components/icons";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#030712] border-t border-white/5 py-10">
+    <footer className="bg-[var(--section-bg-1)] border-t border-white/5 py-10">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}

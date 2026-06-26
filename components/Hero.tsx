@@ -181,7 +181,7 @@ export default function Hero() {
           >
             <div className="gradient-border-card p-0 overflow-hidden shadow-2xl shadow-black/50">
               {/* Terminal header */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-[#0a0f1e] border-b border-white/5">
+              <div className="flex items-center gap-2 px-4 py-3 bg-[var(--terminal-header)] border-b border-white/5">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -191,7 +191,7 @@ export default function Hero() {
               </div>
 
               {/* Test output */}
-              <div className="p-5 bg-[#070d1c] font-mono text-sm space-y-1 min-h-[320px]">
+              <div className="p-5 bg-[var(--terminal-body)] font-mono text-sm space-y-1 min-h-[320px]">
                 <p className="text-slate-500 text-xs mb-4">
                   $ npx playwright test --reporter=list
                 </p>
