@@ -25,6 +25,11 @@ html, body, section, footer, header {
   transition: background-color 0.35s ease;
 }
 
+/* Offset anchors so sections don't hide under the fixed navbar */
+html {
+  scroll-padding-top: 5rem;
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }

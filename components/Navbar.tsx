@@ -38,6 +38,11 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  const scrollTo = (href: string) => {
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const cardBg =
     theme === "light"
       ? "bg-white/90 backdrop-blur-xl border border-black/10 shadow-xl shadow-black/8"
@@ -53,7 +58,7 @@ export default function Navbar() {
         <nav className="h-16 px-6 flex items-center justify-between" aria-label="Main navigation">
 
           {/* Logo */}
-          <a href="#hero" aria-label="Tanveer Hussain – back to top" className="flex items-center gap-3 group">
+          <a href="#hero" aria-label="Tanveer Hussain – back to top" onClick={(e) => { e.preventDefault(); scrollTo("#hero"); }} className="flex items-center gap-3 group">
             <div
               aria-hidden="true"
               className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center font-bold text-sm text-white shadow-lg group-hover:shadow-cyan-500/40 transition-shadow"
@@ -73,6 +78,7 @@ export default function Navbar() {
                 href={l.href}
                 role="listitem"
                 aria-current={active === l.href.slice(1) ? "true" : undefined}
+                onClick={(e) => { e.preventDefault(); scrollTo(l.href); }}
                 className={`nav-link ${active === l.href.slice(1) ? "active" : ""}`}
               >
                 {l.label}
@@ -96,6 +102,7 @@ export default function Navbar() {
 
             <a
               href="#contact"
+              onClick={(e) => { e.preventDefault(); scrollTo("#contact"); }}
               className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 text-always-white text-sm font-bold tracking-wide transition-all hover:shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-px active:translate-y-0"
             >
               Hire Me
@@ -126,7 +133,7 @@ export default function Navbar() {
                 <a
                   key={l.href}
                   href={l.href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => { e.preventDefault(); scrollTo(l.href); setMenuOpen(false); }}
                   className="text-slate-300 hover:text-cyan-400 py-2.5 px-3 rounded-xl hover:bg-white/5 transition-all text-base font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
                 >
                   {l.label}
@@ -134,7 +141,7 @@ export default function Navbar() {
               ))}
               <a
                 href="#contact"
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => { e.preventDefault(); scrollTo("#contact"); setMenuOpen(false); }}
                 className="mt-2 text-center py-3 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 text-always-white text-sm font-bold"
               >
                 Hire Me
