@@ -1,13 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import { Mail, Download, ArrowRight, CheckCircle, AlertCircle, Loader } from "lucide-react";
 import { motion } from "framer-motion";
 import { LinkedInIcon, GitHubIcon } from "@/components/icons";
 import CountUp from "@/components/CountUp";
-
-const ThreeScene = dynamic(() => import("@/components/ThreeScene"), { ssr: false });
 
 const stats = [
   { value: "6+", label: "Years Experience", color: "from-cyan-400 to-cyan-600" },
@@ -61,11 +58,6 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center hero-bg grid-bg overflow-hidden pt-16">
-      {/* 3D rotating geometry — persistent background */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <ThreeScene />
-      </div>
-
       {/* Animated orbs */}
       <div className="orb w-[600px] h-[600px] top-[-200px] left-[-200px] animate-float"
         style={{ background: "radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%)" }} />
