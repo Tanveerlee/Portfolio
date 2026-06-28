@@ -127,7 +127,7 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setMenuOpen(false)}
-                  className="text-slate-300 hover:text-cyan-400 py-2.5 px-3 rounded-xl hover:bg-white/5 transition-all text-base font-medium"
+                  className="text-slate-300 hover:text-cyan-400 py-2.5 px-3 rounded-xl hover:bg-white/5 transition-all text-base font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
                 >
                   {l.label}
                 </a>
