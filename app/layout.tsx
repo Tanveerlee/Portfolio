@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { MotionConfig } from "framer-motion";
+import ScrollProgress from "@/components/ScrollProgress";
+import CursorGlow from "@/components/CursorGlow";
 
 export const metadata: Metadata = {
   title: "Tanveer Hussain | Senior QA Automation Engineer",
@@ -55,6 +57,8 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[var(--section-bg-1)] text-white antialiased min-h-screen" suppressHydrationWarning>
+        <ScrollProgress />
+        <CursorGlow />
         <ThemeProvider>
           <MotionConfig reducedMotion="user">
             {children}

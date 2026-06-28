@@ -30,6 +30,7 @@ export default function Education() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
             className="relative overflow-hidden gradient-border-card p-7 group"
           >
             <div className="card-shimmer" />
@@ -78,6 +79,7 @@ export default function Education() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
             className="relative overflow-hidden gradient-border-card p-7 group"
           >
             <div className="card-shimmer" />

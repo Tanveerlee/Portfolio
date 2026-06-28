@@ -163,14 +163,23 @@ export default function Achievements() {
                 className={`relative overflow-hidden rounded-2xl border bg-gradient-to-br ${cfg.badge} p-7 glass-card cursor-default group`}
               >
                 <div className="card-shimmer" />
-                <div className="text-3xl mb-4 relative z-10">{a.emoji}</div>
+                <motion.div
+                  className="text-3xl mb-4 relative z-10 inline-block"
+                  whileHover={{ scale: 1.3, rotate: 10, transition: { duration: 0.2 } }}
+                >
+                  {a.emoji}
+                </motion.div>
                 <h3 className="text-white font-bold text-xl mb-3 relative z-10">{a.title}</h3>
                 <p className="text-slate-400 text-sm leading-relaxed mb-4 relative z-10">{a.desc}</p>
                 <div className="flex flex-wrap gap-2 relative z-10">
                   {a.tags.map((t) => (
-                    <span key={t} className={`text-xs px-3 py-1 rounded-full border ${cfg.tag}`}>
+                    <motion.span
+                      key={t}
+                      className={`text-xs px-3 py-1 rounded-full border ${cfg.tag} cursor-default`}
+                      whileHover={{ scale: 1.05, y: -1, transition: { duration: 0.15 } }}
+                    >
                       {t}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </motion.div>

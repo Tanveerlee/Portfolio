@@ -254,11 +254,13 @@ export default function Contact() {
                     className="w-full bg-slate-800/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 focus:bg-slate-800/80 transition-all resize-none"
                   />
                 </div>
-                <button
+                <motion.button
                   type="submit"
                   disabled={status === "sending"}
                   className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
                   aria-live="polite"
+                  whileHover={{ scale: 1.02, transition: { duration: 0.15 } }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   {status === "sending" && (
                     <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" aria-hidden="true" />Sending…</>
@@ -272,7 +274,7 @@ export default function Contact() {
                   {status === "idle" && (
                     <><Send size={16} aria-hidden="true" />Send Message</>
                   )}
-                </button>
+                </motion.button>
               </form>
             </div>
           </motion.div>

@@ -105,6 +105,7 @@ export default function Experience() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="relative"
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 >
                   {/* Timeline dot (decorative) */}
                   <div aria-hidden="true" className={`absolute -left-[26px] w-4 h-4 rounded-full shadow-lg ${cfg.dot} border-2 border-[#030712] top-6`}>
@@ -177,7 +178,8 @@ export default function Experience() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.2, delay: idx * 0.05 }}
-                            className={`text-xs px-3 py-1 rounded-full border font-mono ${cfg.tech}`}
+                            className={`text-xs px-3 py-1 rounded-full border font-mono cursor-default ${cfg.tech}`}
+                          whileHover={{ y: -2, transition: { duration: 0.15 } }}
                           >
                             {t}
                           </motion.span>
