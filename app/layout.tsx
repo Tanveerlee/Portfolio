@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import { MotionConfig } from "framer-motion";
 import ScrollProgress from "@/components/ScrollProgress";
 import CursorGlow from "@/components/CursorGlow";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "Tanveer Hussain | Senior QA Automation Engineer",
@@ -57,6 +58,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[var(--section-bg-1)] text-white antialiased min-h-screen" suppressHydrationWarning>
+        <SmoothScroll />
         <ScrollProgress />
         <CursorGlow />
         <ThemeProvider>

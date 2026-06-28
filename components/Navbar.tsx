@@ -39,8 +39,13 @@ export default function Navbar() {
   }, []);
 
   const scrollTo = (href: string) => {
-    const target = document.querySelector(href);
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.scrollTo(href, { offset: -80, duration: 1.4 });
+    } else {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const cardBg =
