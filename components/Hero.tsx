@@ -23,9 +23,9 @@ const testLines = [
 ];
 
 const toolsList = [
-  "Playwright", "TypeScript", "Cypress", "Postman", "SQL",
-  "Git", "GitHub Actions", "Azure DevOps", "JIRA", "REST APIs",
-  "JMeter", "Burp Suite", "Agile / Scrum", "Selenium",
+  "⚡ Playwright", "🔷 TypeScript", "🎭 Cypress", "📮 Postman", "🗄️ SQL",
+  "🔀 Git", "⚙️ GitHub Actions", "☁️ Azure DevOps", "🐛 JIRA", "🌐 REST APIs",
+  "📊 JMeter", "🔒 Burp Suite", "🏃 Agile / Scrum", "🧩 Selenium",
 ];
 
 const roles = [
@@ -310,13 +310,12 @@ export default function Hero() {
           <div className="pointer-events-none absolute right-0 top-0 h-full w-16 z-10"
             style={{ background: "linear-gradient(to left, var(--section-bg-1, #030712), transparent)" }} />
           <div
-            className="flex items-center w-max"
+            className="flex gap-10 w-max"
             style={{ animation: "toolsTicker 20s linear infinite", willChange: "transform" }}
           >
             {[...toolsList, ...toolsList].map((t, i) => (
-              <span key={i} className="flex items-center whitespace-nowrap">
-                <span className="gradient-text text-sm font-semibold cursor-default">{t}</span>
-                <span className="mx-4 text-slate-700 font-light select-none">·</span>
+              <span key={i} className="text-slate-500 text-sm font-medium whitespace-nowrap hover:text-cyan-400 transition-colors cursor-default">
+                {t}
               </span>
             ))}
           </div>
