@@ -152,12 +152,16 @@ export default function Contact() {
               </p>
 
               <div className="space-y-3 mb-6">
-                {contacts.map((c) => (
-                  <a
+                {contacts.map((c, index) => (
+                  <motion.a
                     key={c.label}
                     href={c.href}
                     target={c.href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
+                    initial={{ opacity: 0, x: -12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: index * 0.08 }}
                     className="flex items-center gap-4 p-3 rounded-xl bg-slate-800/40 hover:bg-slate-800/70 border border-slate-700/40 hover:border-slate-600/60 transition-all group"
                   >
                     <div aria-hidden="true" className={`w-9 h-9 rounded-lg border flex items-center justify-center flex-shrink-0 ${colorMap[c.color]}`}>
@@ -168,7 +172,7 @@ export default function Contact() {
                       <p className="text-white text-sm font-medium truncate">{c.value}</p>
                     </div>
                     <ExternalLink size={14} className="text-slate-600 group-hover:text-slate-400 ml-auto flex-shrink-0 transition-colors" />
-                  </a>
+                  </motion.a>
                 ))}
               </div>
 

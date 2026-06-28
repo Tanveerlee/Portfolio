@@ -22,6 +22,12 @@ const testLines = [
   { status: "running", text: "Performance benchmarks...", time: "–" },
 ];
 
+const toolsList = [
+  "⚡ Playwright", "🔷 TypeScript", "🎭 Cypress", "📮 Postman", "🗄️ SQL",
+  "🔀 Git", "⚙️ GitHub Actions", "☁️ Azure DevOps", "🐛 JIRA", "🌐 REST APIs",
+  "📊 JMeter", "🔒 Burp Suite", "🏃 Agile / Scrum", "🧩 Selenium",
+];
+
 const roles = [
   "Senior QA Automation Engineer",
   "Playwright & Cypress Expert",
@@ -290,6 +296,29 @@ export default function Hero() {
               </motion.div>
             );
           })}
+        </motion.div>
+
+        {/* Tools ticker */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          className="mt-8 relative overflow-hidden py-3 border-y border-slate-800/50"
+        >
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-16 z-10"
+            style={{ background: "linear-gradient(to right, var(--section-bg-1, #030712), transparent)" }} />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-16 z-10"
+            style={{ background: "linear-gradient(to left, var(--section-bg-1, #030712), transparent)" }} />
+          <div
+            className="flex gap-10 w-max"
+            style={{ animation: "toolsTicker 20s linear infinite", willChange: "transform" }}
+          >
+            {[...toolsList, ...toolsList].map((t, i) => (
+              <span key={i} className="text-slate-500 text-sm font-medium whitespace-nowrap hover:text-cyan-400 transition-colors cursor-default">
+                {t}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
 

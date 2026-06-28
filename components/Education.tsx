@@ -55,11 +55,18 @@ export default function Education() {
               <div className="h-px bg-slate-800" />
 
               <div className="space-y-2">
-                {["Software Engineering", "Data Structures & Algorithms", "Database Management", "Computer Networks"].map((s) => (
-                  <div key={s} className="flex items-center gap-2 text-sm text-slate-400">
+                {["Software Engineering", "Data Structures & Algorithms", "Database Management", "Computer Networks"].map((s, i) => (
+                  <motion.div
+                    key={s}
+                    initial={{ opacity: 0, x: -8 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.25, delay: i * 0.08 }}
+                    className="flex items-center gap-2 text-sm text-slate-400"
+                  >
                     <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0" />
                     {s}
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -88,9 +95,15 @@ export default function Education() {
               <div>
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-white font-semibold">Huawei HCIA-AI</span>
-                  <span className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: 0.3 }}
+                    className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/20"
+                  >
                     Verified
-                  </span>
+                  </motion.span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-400 text-sm mb-1">
                   <Building2 size={13} aria-hidden="true" />
@@ -114,11 +127,18 @@ export default function Education() {
                     "Neural Networks & Deep Learning",
                     "Python for AI Development",
                     "Cloud AI with Huawei ModelArts",
-                  ].map((s) => (
-                    <div key={s} className="flex items-center gap-2 text-sm text-slate-400">
+                  ].map((s, i) => (
+                    <motion.div
+                      key={s}
+                      initial={{ opacity: 0, x: -8 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.25, delay: i * 0.08 }}
+                      className="flex items-center gap-2 text-sm text-slate-400"
+                    >
                       <div className="w-1.5 h-1.5 rounded-full bg-violet-400 flex-shrink-0" />
                       {s}
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>

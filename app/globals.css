@@ -266,6 +266,12 @@ body {
     will-change: transform;
   }
 
+  /* ── Tools ticker — Hero section tool names scrolling strip ── */
+  @keyframes toolsTicker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
   /* ── Card shimmer — diagonal light sweep on group hover ── */
   [data-theme="light"] .card-shimmer {
     background: linear-gradient(

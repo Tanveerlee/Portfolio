@@ -84,8 +84,15 @@ export default function Experience() {
 
         {/* Timeline */}
         <div className="relative pl-10">
-          {/* Vertical line */}
-          <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-400 via-violet-400 to-transparent opacity-30" />
+          {/* Vertical line — draws downward on scroll */}
+          <motion.div
+            className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-400 via-violet-400 to-transparent opacity-30"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
+            style={{ originY: 0 }}
+          />
 
           <div className="space-y-12">
             {jobs.map((job, i) => {
@@ -135,24 +142,45 @@ export default function Experience() {
                       </div>
                     </div>
 
-                    {/* Bullet points */}
-                    <ul className="space-y-2.5 mb-5 relative z-10" aria-label={`Responsibilities at ${job.company}`}>
+                    {/* Bullet points — staggered entrance */}
+                    <motion.ul
+                      className="space-y-2.5 mb-5 relative z-10"
+                      aria-label={`Responsibilities at ${job.company}`}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true }}
+                      variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }}
+                    >
                       {job.points.map((p) => (
-                        <li key={p} className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
+                        <motion.li
+                          key={p}
+                          variants={{
+                            hidden: { opacity: 0, x: -10 },
+                            show: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+                          }}
+                          className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed"
+                        >
                           <CheckCircle2 size={14} aria-hidden="true" className="text-emerald-400 flex-shrink-0 mt-0.5" />
                           <span>{p}</span>
-                        </li>
+                        </motion.li>
                       ))}
-                    </ul>
+                    </motion.ul>
 
-                    {/* Tech stack */}
+                    {/* Tech stack — pop-in */}
                     <div className="border-t border-slate-800 pt-4 relative z-10">
                       <p className="text-xs text-slate-500 mb-2 font-medium uppercase tracking-wide">Key Tools</p>
                       <div className="flex flex-wrap gap-2">
-                        {job.techStack.map((t) => (
-                          <span key={t} className={`text-xs px-3 py-1 rounded-full border font-mono ${cfg.tech}`}>
+                        {job.techStack.map((t, idx) => (
+                          <motion.span
+                            key={t}
+                            initial={{ opacity: 0, scale: 0.75 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.2, delay: idx * 0.05 }}
+                            className={`text-xs px-3 py-1 rounded-full border font-mono ${cfg.tech}`}
+                          >
                             {t}
-                          </span>
+                          </motion.span>
                         ))}
                       </div>
                     </div>
